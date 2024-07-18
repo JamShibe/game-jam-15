@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpafmudyt5c8h"]
+
+[ext_resource type="Script" path="res://assets/scripts/ghost.gd" id="1_siobg"]
+
+[node name="ghost" type="AnimatedSprite2D"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.890196)
+script = ExtResource("1_siobg")
