@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var dash_cooldown : Timer = $dashCooldown
 @onready var dash_duration : Timer = $dashDuration
 @onready var ghost_cooldown : Timer = $ghostCooldown
+@onready var sizzle_time : Timer = $sizzleTime
+@onready var invun_time : Timer = $invunTimer
 
 #Defines Original Speed constant. Speed variable will be changed via dashing and then set back to original speed
 const ORIG_SPEED = 100
@@ -17,13 +19,20 @@ var speed : int = ORIG_SPEED
 var input_vector : Vector2
 var current_frame : int
 var current_progress : float
+var sizzle_amount : int = 0
+var started : bool = false
+var health : int = 100
 
 #_physics_process is run every single frame.
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	#Runs the move player function
+	sizzle(false)
 	move_player()
+	if health <= 0:
+		#DEATH HERE
+		visible = false
 
-func move_player():
+func move_player() -> void:
 	#Resets input_vector to zero
 	input_vector = Vector2.ZERO
 	#Uses inputs to decide which direction the player should move in.
@@ -35,6 +44,9 @@ func move_player():
 		dash();
 
 	if input_vector:
+		#once player moves for the first time, started is set to true
+		if !started:
+			started = true
 		#Saves the current frame/progress so we can switch between animations without restarting them
 		current_frame = sprite.frame
 		current_progress = sprite.get_frame_progress()
@@ -70,7 +82,7 @@ func move_player():
 	move_and_slide()
 
 #Handles the dash + ghost
-func dash():
+func dash() -> void:
 	#If the dash cooldown has reset:
 	if dash_cooldown.is_stopped():
 		#Triple the speed while dashing
@@ -81,15 +93,47 @@ func dash():
 		dash_cooldown.start()
 		
 #Resets speed and stops ghosting when dash is done
-func _on_dash_duration_timeout():
+func _on_dash_duration_timeout() -> void:
 	ghost_cooldown.stop()
 	speed = ORIG_SPEED
 
 #Spawns a ghost every time the ghost timer loops (0.05 seconds)
-func _on_ghost_cooldown_timeout():
+func _on_ghost_cooldown_timeout() -> void:
 	#Creates ghost node
 	var ghost = ghost_node.instantiate()
 	#Set properties of the ghost so it matches sprite
 	ghost.set_property(position, sprite.scale, sprite.frame, sprite.sprite_frames, sprite.animation, rotation)
 	#Adds ghost into the scene
 	get_tree().current_scene.add_child(ghost)
+	
+#if in light, player will start sizzling
+func sizzle(is_sizzling : bool) -> void:
+	if is_sizzling and sizzle_amount < 53:
+		sizzle_amount += 2
+		modulate = Color(1, 1, 0)
+	elif sizzle_amount > 0:
+		sizzle_amount -= 1
+		speed = ORIG_SPEED
+	if sizzle_amount < 1 and dash_cooldown.is_stopped():
+		modulate = Color(1, 1, 1)
+		speed = ORIG_SPEED
+	elif sizzle_amount > 5 and dash_cooldown.is_stopped():
+		speed = ORIG_SPEED / 3
+	if sizzle_amount > 50 and sizzle_time.is_stopped():
+		sizzle_time.start()
+	elif sizzle_amount < 50 and !sizzle_time.is_stopped():
+		sizzle_time.stop()
+		
+func _on_sizzle_time_timeout() -> void:
+	#DEATH HERE
+	visible = false
+
+func _on_hitbox_body_entered(body):
+	if "damage" in body and invun_time.is_stopped():
+		if body.damage > 0:
+			health -= body.damage
+			sprite.modulate = Color(1,0,0)
+			invun_time.start()
+		
+func _on_invun_timer_timeout():
+	sprite.modulate = Color(1,1,1)

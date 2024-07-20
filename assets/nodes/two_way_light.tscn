@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://jury3vwrgflo"]
+
+[ext_resource type="Script" path="res://assets/scripts/two_way_light.gd" id="1_aomry"]
+[ext_resource type="Texture2D" uid="uid://dlmn5qteh7i82" path="res://assets/sprites/light2.webp" id="1_jh18c"]
+[ext_resource type="Texture2D" uid="uid://d1iq2s0al4uee" path="res://assets/sprites/tempRotatingLight.png" id="1_x3xnq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufng"]
+size = Vector2(24, 30)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_h20ww"]
+polygon = PackedVector2Array(-12.9809, -10.3847, 12.9809, -10.3847, 0, -1.29809)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsn21"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_x3xnq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="twoWayLight" type="CharacterBody2D"]
+script = ExtResource("1_aomry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_sufng")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("1_jh18c")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+scale = Vector2(0.770361, 0.770361)
+occluder = SubResource("OccluderPolygon2D_h20ww")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+rotation = 3.14159
+scale = Vector2(0.770361, 0.770361)
+occluder = SubResource("OccluderPolygon2D_h20ww")
+
+[node name="lightSprite" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+sprite_frames = SubResource("SpriteFrames_wsn21")
