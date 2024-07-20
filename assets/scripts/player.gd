@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var dash_duration : Timer = $dashDuration
 @onready var ghost_cooldown : Timer = $ghostCooldown
 @onready var sizzle_time : Timer = $sizzleTime
+@onready var invun_time : Timer = $invunTimer
 
 #Defines Original Speed constant. Speed variable will be changed via dashing and then set back to original speed
 const ORIG_SPEED = 100
@@ -20,12 +21,16 @@ var current_frame : int
 var current_progress : float
 var sizzle_amount : int = 0
 var started : bool = false
+var health : int = 100
 
 #_physics_process is run every single frame.
 func _physics_process(delta) -> void:
 	#Runs the move player function
 	sizzle(false)
 	move_player()
+	if health <= 0:
+		#DEATH HERE
+		visible = false
 
 func move_player() -> void:
 	#Resets input_vector to zero
@@ -121,4 +126,14 @@ func sizzle(is_sizzling : bool) -> void:
 		
 func _on_sizzle_time_timeout() -> void:
 	#DEATH HERE
-	queue_free()
+	visible = false
+
+func _on_hitbox_body_entered(body):
+	if "damage" in body and invun_time.is_stopped():
+		if body.damage > 0:
+			health -= body.damage
+			sprite.modulate = Color(1,0,0)
+			invun_time.start()
+		
+func _on_invun_timer_timeout():
+	sprite.modulate = Color(1,1,1)

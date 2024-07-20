@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://jury3vwrgflo"]
+[gd_scene load_steps=7 format=3 uid="uid://jury3vwrgflo"]
 
+[ext_resource type="Script" path="res://assets/scripts/two_way_light.gd" id="1_aomry"]
 [ext_resource type="Texture2D" uid="uid://dlmn5qteh7i82" path="res://assets/sprites/light2.webp" id="1_jh18c"]
 [ext_resource type="Texture2D" uid="uid://d1iq2s0al4uee" path="res://assets/sprites/tempRotatingLight.png" id="1_x3xnq"]
 
@@ -21,6 +22,7 @@ animations = [{
 }]
 
 [node name="twoWayLight" type="CharacterBody2D"]
+script = ExtResource("1_aomry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -30,6 +32,7 @@ shape = SubResource("RectangleShape2D_sufng")
 color = Color(1, 1, 0, 1)
 energy = 0.5
 shadow_enabled = true
+shadow_filter = 2
 texture = ExtResource("1_jh18c")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

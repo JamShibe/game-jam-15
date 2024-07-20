@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://dv6fcldiygqo5"]
+[gd_scene load_steps=41 format=3 uid="uid://dv6fcldiygqo5"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_58cn2"]
 [ext_resource type="Texture2D" uid="uid://by50wukyi5bdm" path="res://assets/sprites/spritesheets/tempPlayerSpritesheet.png" id="2_wiiac"]
 [ext_resource type="PackedScene" uid="uid://dpafmudyt5c8h" path="res://assets/nodes/ghost.tscn" id="2_x44bf"]
+[ext_resource type="PackedScene" uid="uid://b73ixacvpdohi" path="res://assets/nodes/healthbar.tscn" id="3_4dvyc"]
 [ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="4_rv71t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n8ob"]
@@ -275,9 +276,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q50mq"]
 size = Vector2(14, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xdq2"]
+size = Vector2(10, 13)
+
 [node name="player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_58cn2")
 ghost_node = ExtResource("2_x44bf")
+
+[node name="healthbar" parent="." instance=ExtResource("3_4dvyc")]
+position = Vector2(0, -9)
 
 [node name="playerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w5tob")
@@ -287,6 +295,15 @@ frame_progress = 0.0503187
 [node name="playerCollider" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_q50mq")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6xdq2")
 
 [node name="dashDuration" type="Timer" parent="."]
 wait_time = 0.25
@@ -302,6 +319,9 @@ wait_time = 0.05
 wait_time = 2.0
 one_shot = true
 
+[node name="invunTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="playerLight" type="PointLight2D" parent="."]
 z_index = 1
 color = Color(0.494118, 0.0313726, 1, 1)
@@ -310,7 +330,9 @@ shadow_enabled = true
 texture = ExtResource("4_rv71t")
 texture_scale = 0.3
 
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="dashDuration" to="." method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="ghostCooldown" to="." method="_on_ghost_cooldown_timeout"]
 [connection signal="timeout" from="sizzleTime" to="." method="_on_sizzle_time_timeout"]
+[connection signal="timeout" from="invunTimer" to="." method="_on_invun_timer_timeout"]

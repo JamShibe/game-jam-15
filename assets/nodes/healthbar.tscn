@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://b73ixacvpdohi"]
+
+[ext_resource type="Texture2D" uid="uid://fmxk4813lpms" path="res://assets/sprites/tempHealthBar.png" id="1_23x68"]
+[ext_resource type="Script" path="res://assets/scripts/healthbar.gd" id="2_2hxko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js1gs"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 0, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d577b"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 2, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vpps"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 4, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpmmc"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 6, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo7gy"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 8, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44p4n"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 10, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jffgq"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 12, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8106"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 14, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkc62"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 16, 10, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxmhc"]
+atlas = ExtResource("1_23x68")
+region = Rect2(0, 18, 10, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki82y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js1gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d577b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vpps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpmmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo7gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44p4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jffgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8106")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkc62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxmhc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="healthbar" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ki82y")
+script = ExtResource("2_2hxko")

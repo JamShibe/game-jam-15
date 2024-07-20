@@ -1,9 +1,7 @@
 extends Area2D
 
-#Editable range
-@export var range : int
-@export var angle : int
-@export var two_way : bool
+#Get parent
+@onready var parent : Node2D = get_parent()
 
 #Get collider for light's range/danger area
 @onready var light_range : CollisionShape2D = $LightRange
@@ -12,9 +10,24 @@ extends Area2D
 #define other variables
 var bodies_in_range
 var ray_rotation : int
+var range : int
+var angle : int
+var two_way : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if "range" in parent:
+		range = parent.range
+	else:
+		range = 50
+	if "angle" in parent:
+		angle = parent.angle
+	else:
+		angle = -1
+	if "two_way" in parent:
+		two_way = parent.two_way
+	else:
+		two_way = false
 	light_range.shape.radius = range
 
 func _physics_process(delta):

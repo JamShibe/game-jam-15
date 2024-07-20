@@ -5,8 +5,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_oklgo"]
 
 [node name="LightArea" type="Area2D"]
+collision_mask = 6
 script = ExtResource("1_yj7su")
-range = 500
 
 [node name="LightRange" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oklgo")
@@ -15,3 +15,4 @@ shape = SubResource("CircleShape2D_oklgo")
 
 [node name="LightRay" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
+collision_mask = 7
