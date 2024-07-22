@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b73im840qyfi6"]
+
+[ext_resource type="Texture2D" uid="uid://bepyc8xuk322g" path="res://assets/sprites/text/requiresText.png" id="1_oylbt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g0x0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oylbt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="IngredientsList" type="Node2D"]
+
+[node name="requires" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g0x0g")

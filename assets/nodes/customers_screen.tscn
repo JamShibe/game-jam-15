@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bondae15yc3t1"]
+
+[ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_8nvg1"]
+[ext_resource type="Texture2D" uid="uid://cr2rd0s7bw0m5" path="res://assets/sprites/text/tempCustomersText.png" id="2_ihp37"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcup8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8nvg1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fm1wn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ihp37")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="customers_screen" type="Node2D"]
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gcup8")
+
+[node name="title" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -43)
+sprite_frames = SubResource("SpriteFrames_fm1wn")

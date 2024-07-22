@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce4ckw8hnrcc7"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_effects/simpleStrengthPotion.gd" id="1_kr1lo"]
+
+[node name="simpleStrengthPotion" type="Node"]
+script = ExtResource("1_kr1lo")

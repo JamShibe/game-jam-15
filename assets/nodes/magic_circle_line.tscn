@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvrhv2esf5lwe"]
+
+[ext_resource type="Script" path="res://assets/scripts/magic_circle_line.gd" id="1_ajf6g"]
+
+[node name="magic_circle_line" type="Line2D"]
+visible = false
+points = PackedVector2Array(0, 0, 57, 0)
+width = 2.0
+default_color = Color(1, 0, 0.862745, 0.784314)
+script = ExtResource("1_ajf6g")

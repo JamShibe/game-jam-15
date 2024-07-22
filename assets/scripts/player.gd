@@ -21,7 +21,11 @@ var current_frame : int
 var current_progress : float
 var sizzle_amount : int = 0
 var started : bool = false
-var health : int = 100
+var health : float = 100
+
+#Potion Effects:
+var speed_modifier : float = 0
+var dmg_modifier : float = 0
 
 #_physics_process is run every single frame.
 func _physics_process(delta) -> void:
@@ -42,6 +46,9 @@ func move_player() -> void:
 	#Checks to see if the player is using the dash:
 	if Input.is_action_pressed("dash"):
 		dash();
+		
+	if Input.is_action_pressed("right_click"):
+		use_potion()
 
 	if input_vector:
 		#once player moves for the first time, started is set to true
@@ -86,7 +93,7 @@ func dash() -> void:
 	#If the dash cooldown has reset:
 	if dash_cooldown.is_stopped():
 		#Triple the speed while dashing
-		speed = ORIG_SPEED * 3
+		speed = (ORIG_SPEED + speed_modifier) * 3
 		#Start all duration/cooldown timers
 		ghost_cooldown.start()
 		dash_duration.start();
@@ -95,7 +102,7 @@ func dash() -> void:
 #Resets speed and stops ghosting when dash is done
 func _on_dash_duration_timeout() -> void:
 	ghost_cooldown.stop()
-	speed = ORIG_SPEED
+	speed = ORIG_SPEED + speed_modifier
 
 #Spawns a ghost every time the ghost timer loops (0.05 seconds)
 func _on_ghost_cooldown_timeout() -> void:
@@ -113,12 +120,12 @@ func sizzle(is_sizzling : bool) -> void:
 		modulate = Color(1, 1, 0)
 	elif sizzle_amount > 0:
 		sizzle_amount -= 1
-		speed = ORIG_SPEED
+		speed = ORIG_SPEED + speed_modifier
 	if sizzle_amount < 1 and dash_cooldown.is_stopped():
 		modulate = Color(1, 1, 1)
-		speed = ORIG_SPEED
+		speed = ORIG_SPEED + speed_modifier
 	elif sizzle_amount > 5 and dash_cooldown.is_stopped():
-		speed = ORIG_SPEED / 3
+		speed = (ORIG_SPEED + speed_modifier) / 3
 	if sizzle_amount > 50 and sizzle_time.is_stopped():
 		sizzle_time.start()
 	elif sizzle_amount < 50 and !sizzle_time.is_stopped():
@@ -137,3 +144,11 @@ func _on_hitbox_body_entered(body):
 		
 func _on_invun_timer_timeout():
 	sprite.modulate = Color(1,1,1)
+	
+func use_potion():
+	if find_child("Potion"):
+		find_child("Potion").use()
+		
+func reset():
+	speed_modifier = 0
+	dmg_modifier = 0
