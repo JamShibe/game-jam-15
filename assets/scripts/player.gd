@@ -22,6 +22,7 @@ var current_progress : float
 var sizzle_amount : int = 0
 var started : bool = false
 var health : float = 100
+var ing_list : Array = []
 
 #Potion Effects:
 var speed_modifier : float = 0
@@ -152,3 +153,8 @@ func use_potion():
 func reset():
 	speed_modifier = 0
 	dmg_modifier = 0
+
+func pickup(name : String):
+	ing_list.append(name)
+	print(ing_list)
+	
