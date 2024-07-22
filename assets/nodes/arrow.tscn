@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://xh08ahge432u"]
+
+[ext_resource type="Script" path="res://assets/scripts/arrow.gd" id="1_ntm76"]
+[ext_resource type="Texture2D" uid="uid://cxe2w7j4vpa4t" path="res://assets/sprites/tempArrow.png" id="1_p3cuk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tg7qt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p3cuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khya1"]
+size = Vector2(38, 18)
+
+[node name="Arrow" type="Area2D"]
+script = ExtResource("1_ntm76")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tg7qt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_khya1")

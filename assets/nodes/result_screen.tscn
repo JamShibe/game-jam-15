@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5slrhj6n2ls7"]
+
+[ext_resource type="Script" path="res://assets/scripts/result_screen.gd" id="1_kvgwl"]
+[ext_resource type="Texture2D" uid="uid://d0wfj23sh0i8n" path="res://assets/sprites/potionOutline.png" id="1_p7op4"]
+[ext_resource type="Texture2D" uid="uid://bwr1ng0cqs18q" path="res://assets/sprites/potionInner.png" id="2_e441g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1b6v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p7op4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u6u47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e441g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="result_screen" type="Node2D"]
+script = ExtResource("1_kvgwl")
+
+[node name="Outline" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e1b6v")
+
+[node name="Contents" type="AnimatedSprite2D" parent="Outline"]
+sprite_frames = SubResource("SpriteFrames_u6u47")

@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=3 uid="uid://lbi6hjixc81s"]
+
+[ext_resource type="PackedScene" uid="uid://dvkwpb1axjioy" path="res://assets/nodes/workbench_screen.tscn" id="1_0p51f"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_rkpi6"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_nv3mj"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_84sdn"]
+[ext_resource type="PackedScene" uid="uid://dtj1tbewolah0" path="res://assets/nodes/upgrades_screen.tscn" id="5_3sm6g"]
+[ext_resource type="PackedScene" uid="uid://bondae15yc3t1" path="res://assets/nodes/customers_screen.tscn" id="6_4jwue"]
+[ext_resource type="PackedScene" uid="uid://dxg7spxwsygue" path="res://assets/nodes/ingredients_screen.tscn" id="7_jpd01"]
+[ext_resource type="PackedScene" uid="uid://xh08ahge432u" path="res://assets/nodes/arrow.tscn" id="7_m0hy2"]
+
+[sub_resource type="Resource" id="Resource_boy6q"]
+script = ExtResource("3_84sdn")
+duration = 0.5
+transition = 1
+ease = 2
+
+[sub_resource type="Resource" id="Resource_yoden"]
+script = ExtResource("3_84sdn")
+duration = 0.5
+transition = 1
+ease = 2
+
+[sub_resource type="Resource" id="Resource_hpc7w"]
+script = ExtResource("3_84sdn")
+duration = 0.5
+transition = 1
+ease = 2
+
+[sub_resource type="Resource" id="Resource_n3sva"]
+script = ExtResource("3_84sdn")
+duration = 0.5
+transition = 1
+ease = 2
+
+[node name="test_shop" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 0)
+zoom = Vector2(7, 7)
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("1_rkpi6")
+
+[node name="WorkbenchCam" type="Node2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("2_nv3mj")
+priority = 1
+zoom = Vector2(7, 7)
+tween_resource = SubResource("Resource_boy6q")
+
+[node name="workbench_screen" parent="." instance=ExtResource("1_0p51f")]
+
+[node name="UpgradesCam" type="Node2D" parent="."]
+position = Vector2(-275, 0)
+script = ExtResource("2_nv3mj")
+zoom = Vector2(7, 7)
+tween_resource = SubResource("Resource_yoden")
+
+[node name="upgrades_screen" parent="." instance=ExtResource("5_3sm6g")]
+position = Vector2(-275, 0)
+
+[node name="CustomerCam" type="Node2D" parent="."]
+position = Vector2(275, 0)
+script = ExtResource("2_nv3mj")
+zoom = Vector2(7, 7)
+tween_resource = SubResource("Resource_hpc7w")
+
+[node name="customers_screen" parent="." instance=ExtResource("6_4jwue")]
+position = Vector2(275, 0)
+
+[node name="IngredientsCam" type="Node2D" parent="."]
+position = Vector2(0, 154)
+script = ExtResource("2_nv3mj")
+zoom = Vector2(7, 7)
+tween_resource = SubResource("Resource_n3sva")
+
+[node name="ingredients_screen" parent="." instance=ExtResource("7_jpd01")]
+position = Vector2(0, 153)
+
+[node name="Arrow" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
+position = Vector2(110, 0)
+rotation = 1.5708
+currentCam = NodePath("../WorkbenchCam")
+nextCam = NodePath("../CustomerCam")
+
+[node name="Arrow2" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
+position = Vector2(-110, 0)
+rotation = 4.71239
+currentCam = NodePath("../WorkbenchCam")
+nextCam = NodePath("../UpgradesCam")
+
+[node name="Arrow3" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
+position = Vector2(-165, 0)
+rotation = 1.5708
+currentCam = NodePath("../UpgradesCam")
+nextCam = NodePath("../WorkbenchCam")
+
+[node name="Arrow4" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
+position = Vector2(165, 0)
+rotation = 4.71239
+currentCam = NodePath("../CustomerCam")
+nextCam = NodePath("../WorkbenchCam")
+
+[node name="Arrow5" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
+position = Vector2(0, 64)
+rotation = 3.14159
+currentCam = NodePath("../WorkbenchCam")
+nextCam = NodePath("../IngredientsCam")
+
+[node name="Arrow6" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
+position = Vector2(0, 90)
+currentCam = NodePath("../IngredientsCam")
+nextCam = NodePath("../WorkbenchCam")

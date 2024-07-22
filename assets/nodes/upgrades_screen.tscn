@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtj1tbewolah0"]
+
+[ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_iqb8m"]
+[ext_resource type="Texture2D" uid="uid://bocxhsh3dc0h6" path="res://assets/sprites/text/tempUpgradesText.png" id="2_11uvi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2xig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iqb8m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ts06"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_11uvi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="upgrades_screen" type="Node2D"]
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m2xig")
+
+[node name="title" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -43)
+sprite_frames = SubResource("SpriteFrames_1ts06")

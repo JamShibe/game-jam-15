@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dntqfe8slx1wy"]
+
+[ext_resource type="Texture2D" uid="uid://dcnx8fl0lb4o2" path="res://assets/sprites/tempPoint.png" id="1_kiree"]
+[ext_resource type="Script" path="res://assets/scripts/point.gd" id="1_qvblq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okml4"]
+size = Vector2(4, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqgyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kiree")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="point" type="Area2D"]
+script = ExtResource("1_qvblq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_okml4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_pqgyj")

@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvkwpb1axjioy"]
+
+[ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_5814g"]
+[ext_resource type="Texture2D" uid="uid://cej4npa787rpu" path="res://assets/sprites/text/tempWorkbenchText.png" id="2_a04qg"]
+[ext_resource type="PackedScene" uid="uid://eiqegsak0xht" path="res://assets/nodes/magic_circle.tscn" id="3_qlx3e"]
+[ext_resource type="PackedScene" uid="uid://b73im840qyfi6" path="res://assets/nodes/ingredients_list.tscn" id="4_2wlt6"]
+[ext_resource type="PackedScene" uid="uid://b5slrhj6n2ls7" path="res://assets/nodes/result_screen.tscn" id="5_gq4c2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cg4l6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5814g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhyjc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a04qg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="workbench_screen" type="Node2D"]
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cg4l6")
+
+[node name="title" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -43)
+sprite_frames = SubResource("SpriteFrames_hhyjc")
+
+[node name="magic_circle" parent="." instance=ExtResource("3_qlx3e")]
+position = Vector2(0, 7)
+
+[node name="IngredientsList" parent="." instance=ExtResource("4_2wlt6")]
+position = Vector2(-65, -21)
+scale = Vector2(0.35, 0.35)
+
+[node name="result_screen" parent="." node_paths=PackedStringArray("magic_circle") instance=ExtResource("5_gq4c2")]
+position = Vector2(65, 7)
+magic_circle = NodePath("../magic_circle")

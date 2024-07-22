@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=3 uid="uid://eiqegsak0xht"]
+
+[ext_resource type="Texture2D" uid="uid://n2u6gv64q3ji" path="res://assets/sprites/tempMagicCircle.png" id="1_6ld68"]
+[ext_resource type="Script" path="res://assets/scripts/magic_circle.gd" id="1_66jsi"]
+[ext_resource type="PackedScene" uid="uid://dntqfe8slx1wy" path="res://assets/nodes/point.tscn" id="2_pvv2o"]
+[ext_resource type="PackedScene" uid="uid://cvrhv2esf5lwe" path="res://assets/nodes/magic_circle_line.tscn" id="3_dy0rt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d21r3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6ld68")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="magic_circle" type="Node2D"]
+script = ExtResource("1_66jsi")
+
+[node name="circleSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d21r3")
+
+[node name="point" parent="." instance=ExtResource("2_pvv2o")]
+position = Vector2(0, -33)
+
+[node name="point2" parent="." instance=ExtResource("2_pvv2o")]
+position = Vector2(30, -18)
+
+[node name="point3" parent="." instance=ExtResource("2_pvv2o")]
+position = Vector2(30, 18)
+
+[node name="point4" parent="." instance=ExtResource("2_pvv2o")]
+position = Vector2(0, 33)
+
+[node name="point5" parent="." instance=ExtResource("2_pvv2o")]
+position = Vector2(-30, 18)
+
+[node name="point6" parent="." instance=ExtResource("2_pvv2o")]
+position = Vector2(-30, -18)
+
+[node name="magic_circle_line" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(-30, 18)
+points = PackedVector2Array(30, -51, 60, -36)
+point1 = NodePath("../point")
+point2 = NodePath("../point2")
+
+[node name="magic_circle_line2" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(0, -33)
+points = PackedVector2Array(0, 0, 30, 51)
+point1 = NodePath("../point")
+point2 = NodePath("../point3")
+
+[node name="magic_circle_line3" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(0, -33)
+points = PackedVector2Array(0, 0, 0, 66)
+point1 = NodePath("../point")
+point2 = NodePath("../point4")
+
+[node name="magic_circle_line4" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(0, -33)
+points = PackedVector2Array(0, 0, -30, 51)
+point1 = NodePath("../point")
+point2 = NodePath("../point5")
+
+[node name="magic_circle_line5" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(0, -33)
+points = PackedVector2Array(0, 0, -30, 15)
+point1 = NodePath("../point")
+point2 = NodePath("../point6")
+
+[node name="magic_circle_line6" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, -18)
+points = PackedVector2Array(0, 0, 0, 36)
+point1 = NodePath("../point2")
+point2 = NodePath("../point3")
+
+[node name="magic_circle_line7" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, -18)
+points = PackedVector2Array(0, 0, -30, 51)
+point1 = NodePath("../point2")
+point2 = NodePath("../point4")
+
+[node name="magic_circle_line8" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, -18)
+points = PackedVector2Array(0, 0, -60, 36)
+point1 = NodePath("../point2")
+point2 = NodePath("../point5")
+
+[node name="magic_circle_line9" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, -18)
+points = PackedVector2Array(0, 0, -60, 0)
+point1 = NodePath("../point2")
+point2 = NodePath("../point6")
+
+[node name="magic_circle_line10" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, 18)
+points = PackedVector2Array(0, 0, -60, -36)
+point1 = NodePath("../point3")
+point2 = NodePath("../point6")
+
+[node name="magic_circle_line11" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, 18)
+points = PackedVector2Array(0, 0, -60, 0)
+point1 = NodePath("../point3")
+point2 = NodePath("../point5")
+
+[node name="magic_circle_line12" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(30, 18)
+points = PackedVector2Array(0, 0, -30, 15)
+point1 = NodePath("../point3")
+point2 = NodePath("../point4")
+
+[node name="magic_circle_line13" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(0, 33)
+points = PackedVector2Array(0, 0, -30, -15)
+point1 = NodePath("../point4")
+point2 = NodePath("../point5")
+
+[node name="magic_circle_line14" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(0, 33)
+points = PackedVector2Array(0, 0, -30, -51)
+point1 = NodePath("../point4")
+point2 = NodePath("../point6")
+
+[node name="magic_circle_line15" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
+position = Vector2(-30, 18)
+points = PackedVector2Array(0, 0, 0, -36)
+point1 = NodePath("../point5")
+point2 = NodePath("../point6")
