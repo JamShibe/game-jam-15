@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg2q80ghak78b"]
+[gd_scene load_steps=15 format=3 uid="uid://bg2q80ghak78b"]
 
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_o2jj1"]
 [ext_resource type="PackedScene" uid="uid://dv6fcldiygqo5" path="res://assets/nodes/player.tscn" id="2_woba2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://di6vhwlpepd7l" path="res://assets/nodes/potions/simple_speed_potion.tscn" id="4_4qaqe"]
 [ext_resource type="PackedScene" uid="uid://dyej7oden0p3r" path="res://assets/nodes/light_area.tscn" id="5_7cf2s"]
 [ext_resource type="PackedScene" uid="uid://cqedk03vyob01" path="res://assets/nodes/basic_enemy.tscn" id="6_v6xum"]
+[ext_resource type="PackedScene" uid="uid://14rrfo0mck6y" path="res://assets/nodes/ingredient.tscn" id="9_4g6gh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3xlh0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -144,3 +145,18 @@ player = NodePath("../player")
 [node name="basic_enemy5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_v6xum")]
 position = Vector2(-404, -47)
 player = NodePath("../player")
+
+[node name="Ingredient" parent="." instance=ExtResource("9_4g6gh")]
+position = Vector2(-321, -64)
+
+[node name="Ingredient2" parent="." instance=ExtResource("9_4g6gh")]
+position = Vector2(-320, 113)
+
+[node name="Ingredient3" parent="." instance=ExtResource("9_4g6gh")]
+position = Vector2(157, -230)
+
+[node name="Ingredient4" parent="." instance=ExtResource("9_4g6gh")]
+position = Vector2(97, 140)
+
+[node name="Ingredient5" parent="." instance=ExtResource("9_4g6gh")]
+position = Vector2(-128, -296)
