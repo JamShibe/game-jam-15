@@ -1,10 +1,12 @@
-[gd_scene load_steps=41 format=3 uid="uid://dv6fcldiygqo5"]
+[gd_scene load_steps=43 format=3 uid="uid://dv6fcldiygqo5"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_58cn2"]
 [ext_resource type="Texture2D" uid="uid://by50wukyi5bdm" path="res://assets/sprites/spritesheets/tempPlayerSpritesheet.png" id="2_wiiac"]
 [ext_resource type="PackedScene" uid="uid://dpafmudyt5c8h" path="res://assets/nodes/ghost.tscn" id="2_x44bf"]
+[ext_resource type="PackedScene" uid="uid://bh8i2x58qeur1" path="res://assets/nodes/attack_blade.tscn" id="3_2mmr3"]
 [ext_resource type="PackedScene" uid="uid://b73ixacvpdohi" path="res://assets/nodes/healthbar.tscn" id="3_4dvyc"]
 [ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="4_rv71t"]
+[ext_resource type="PackedScene" uid="uid://cudo0kdaavx3k" path="res://assets/nodes/potions/potion.tscn" id="7_mkp1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n8ob"]
 atlas = ExtResource("2_wiiac")
@@ -283,6 +285,7 @@ size = Vector2(10, 13)
 collision_layer = 2
 script = ExtResource("1_58cn2")
 ghost_node = ExtResource("2_x44bf")
+attack_node = ExtResource("3_2mmr3")
 
 [node name="healthbar" parent="." instance=ExtResource("3_4dvyc")]
 position = Vector2(0, -9)
@@ -321,13 +324,25 @@ one_shot = true
 [node name="invunTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="playerLight" type="PointLight2D" parent="."]
+[node name="attackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="light" type="PointLight2D" parent="."]
 z_index = 1
 color = Color(0.494118, 0.0313726, 1, 1)
 energy = 0.2
 shadow_enabled = true
 texture = ExtResource("4_rv71t")
 texture_scale = 0.4
+
+[node name="AttackCentre" type="Node2D" parent="."]
+rotation = 1.5708
+
+[node name="AttackPoint" type="Node2D" parent="AttackCentre"]
+position = Vector2(8, 0)
+
+[node name="Potion" parent="." instance=ExtResource("7_mkp1j")]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="dashDuration" to="." method="_on_dash_duration_timeout"]

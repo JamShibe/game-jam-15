@@ -1,5 +1,12 @@
 extends Node
 
-func apply_effect(target : CharacterBody2D) -> void:
-	if "damage" in target:
-		target.damage = target.damage * 1.5
+var duration : int = 5
+
+func _ready():
+		await get_tree().create_timer(duration).timeout
+		queue_free()
+	
+func effect():
+	if "dmg_modifier" in get_parent():
+		get_parent().dmg_modifier += 20
+

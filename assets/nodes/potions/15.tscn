@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bso23g7ta4eqi"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_effects/15.gd" id="1_u3xfc"]
+
+[node name="15" type="Node"]
+script = ExtResource("1_u3xfc")

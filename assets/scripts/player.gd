@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 #Imports nodes in "player" Inspector (Menu on the right when u click on player)
 @export var ghost_node : PackedScene
+@export var attack_node : PackedScene
 
 #Imports some child nodes
 @onready var sprite : AnimatedSprite2D = $playerSprite
@@ -10,6 +11,11 @@ extends CharacterBody2D
 @onready var ghost_cooldown : Timer = $ghostCooldown
 @onready var sizzle_time : Timer = $sizzleTime
 @onready var invun_time : Timer = $invunTimer
+@onready var attack_time : Timer = $attackTimer
+@onready var attack_centre : Node2D = $AttackCentre
+@onready var attack_point : Node2D = $AttackCentre/AttackPoint
+@onready var light : PointLight2D = $light
+@onready var camera : PhantomCamera2D = get_parent().find_child("PhantomCamera2D")
 
 #Defines Original Speed constant. Speed variable will be changed via dashing and then set back to original speed
 const ORIG_SPEED = 100
@@ -22,6 +28,7 @@ var current_progress : float
 var sizzle_amount : int = 0
 var started : bool = false
 var health : float = 100
+var damage : float = 20
 var ing_list : Array = []
 
 #Potion Effects:
@@ -44,11 +51,19 @@ func move_player() -> void:
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left");
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up");
 	
+	reset()
+	for child in get_children():
+		if child.has_method("effect"):
+			child.effect()
+	
 	#Checks to see if the player is using the dash:
 	if Input.is_action_pressed("dash"):
 		dash();
 		
-	if Input.is_action_pressed("right_click"):
+	if Input.is_action_pressed("left_click"):
+		shoot()
+		
+	if Input.is_action_pressed("drink"):
 		use_potion()
 
 	if input_vector:
@@ -61,20 +76,28 @@ func move_player() -> void:
 		#Checks each possible direction and switches to the correct animation
 		if input_vector == Vector2(0,1):
 			sprite.play("moveS")
+			attack_centre.rotation_degrees = 90
 		elif input_vector == Vector2(1,1):
 			sprite.play("moveSE")
+			attack_centre.rotation_degrees = 45
 		elif input_vector == Vector2(1,0):
 			sprite.play("moveE")
+			attack_centre.rotation_degrees = 0
 		elif input_vector == Vector2(1,-1):
 			sprite.play("moveNE")
+			attack_centre.rotation_degrees = -45
 		elif input_vector == Vector2(0,-1):
 			sprite.play("moveN")
+			attack_centre.rotation_degrees = -90
 		elif input_vector == Vector2(-1,-1):
 			sprite.play("moveNW")
+			attack_centre.rotation_degrees = -135
 		elif input_vector == Vector2(-1,0):
 			sprite.play("moveW")
+			attack_centre.rotation_degrees = 180
 		elif input_vector == Vector2(-1,1):
 			sprite.play("moveSW")
+			attack_centre.rotation_degrees = 135
 		#Sets frame and progress to be the same so that the animation doesn't reset
 		sprite.set_frame_and_progress(current_frame, current_progress)
 		#Normalizes input_vector to equal one, then multiplies it by the speed and sets the velocity
@@ -151,10 +174,26 @@ func use_potion():
 		find_child("Potion").use()
 		
 func reset():
+	if health > 100:
+		health = 100
 	speed_modifier = 0
 	dmg_modifier = 0
+	light.texture_scale = 0.4
+	camera.zoom = Vector2(5 , 5)
 
 func pickup(name : String):
 	ing_list.append(name)
 	print(ing_list)
+	
+func shoot():
+	if attack_time.is_stopped():
+		attack_time.start()
+		var attack = attack_node.instantiate()
+		get_parent().add_child(attack)
+		attack.global_position = attack_point.global_position
+		attack.rotation = attack_centre.rotation
+		var dir = global_position.direction_to(attack_point.global_position).normalized()
+		attack.damage = damage + dmg_modifier
+		attack.velocity = dir * 150
+		
 	

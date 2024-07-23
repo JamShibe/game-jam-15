@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh8i2x58qeur1"]
+
+[ext_resource type="Script" path="res://assets/scripts/AttackBlade.gd" id="1_5kbtv"]
+[ext_resource type="PackedScene" uid="uid://dpafmudyt5c8h" path="res://assets/nodes/ghost.tscn" id="2_51njd"]
+[ext_resource type="Texture2D" uid="uid://cg2xliorch466" path="res://assets/sprites/tempAttackBlade.png" id="2_mp65q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sac0m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mp65q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuad"]
+size = Vector2(8, 26)
+
+[node name="AttackBlade" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_5kbtv")
+ghost_node = ExtResource("2_51njd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sac0m")
+
+[node name="ghostTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="lifeTimer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_rvuad")
+
+[connection signal="timeout" from="ghostTimer" to="." method="_on_ghost_timer_timeout"]
+[connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

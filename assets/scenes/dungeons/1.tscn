@@ -48,7 +48,7 @@ transition = 0
 ease = 2
 
 [node name="1" type="Node2D" node_paths=PackedStringArray("exit")]
-z_index = -1
+z_index = -2
 script = ExtResource("1_up6wa")
 exit = NodePath("Gateway2")
 
@@ -105,7 +105,7 @@ is_entrance = true
 color = Color(0.276249, 0.250841, 0.303886, 1)
 
 [node name="player" parent="." instance=ExtResource("5_106sq")]
-position = Vector2(-344, -376)
+position = Vector2(-360, 376)
 
 [node name="basic_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_jfcxa")]
 position = Vector2(-304, -24)
@@ -140,8 +140,8 @@ position = Vector2(-344, -520)
 rotation = 3.14159
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-344, -376)
-zoom = Vector2(6, 6)
+position = Vector2(-352, 376)
+zoom = Vector2(5, 5)
 limit_left = -480
 limit_top = -512
 editor_draw_limits = true
@@ -150,11 +150,11 @@ editor_draw_limits = true
 script = ExtResource("7_a4j8l")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(-344, -376)
+position = Vector2(-352, 376)
 script = ExtResource("8_s645f")
 follow_mode = 1
 follow_target = NodePath("../player")
-zoom = Vector2(6, 6)
+zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_73m8e")
 draw_limits = true
 limit_left = -480

@@ -19,6 +19,8 @@ var health : int = 100
 var damage : int = 0
 
 func _physics_process(delta: float) -> void:
+	if health <= 0:
+		queue_free()
 	if "position" in player:
 			raycast.target_position = player.position - global_position
 	if raycast.target_position.length() > 40 and attack_timer.is_stopped() and flash_timer.is_stopped():
