@@ -8,8 +8,10 @@ var health : int
 func _process(delta):
 	if "health" in parent:
 		var health = parent.health
+		visible = true
 		if health > 90:
 			frame = 0
+			visible = false
 		elif health > 80:
 			frame = 1
 		elif health > 70:

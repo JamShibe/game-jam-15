@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://14rrfo0mck6y"]
+[gd_scene load_steps=11 format=3 uid="uid://14rrfo0mck6y"]
 
 [ext_resource type="Texture2D" uid="uid://bojdcpy4uihyc" path="res://assets/sprites/temp_moss.png" id="1_dcxwk"]
 [ext_resource type="Script" path="res://assets/scripts/ingredient.gd" id="1_rblxc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cpb3lqiog56fr" path="res://assets/sprites/cinder_3.png" id="5_bxwle"]
 [ext_resource type="Texture2D" uid="uid://dwv0konc8swxl" path="res://assets/sprites/dock_leaf.png" id="6_ayk0d"]
 [ext_resource type="Texture2D" uid="uid://djk5tploj3pqy" path="res://assets/sprites/hollow_bone.png" id="7_k82xe"]
+[ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="8_kx53b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgjan"]
 
@@ -63,5 +64,10 @@ shape = SubResource("CircleShape2D_mgjan")
 sprite_frames = SubResource("SpriteFrames_5x7yp")
 animation = &"Cave Moss"
 frame_progress = 0.461519
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.1
+texture = ExtResource("8_kx53b")
+texture_scale = 0.1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

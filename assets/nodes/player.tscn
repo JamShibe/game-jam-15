@@ -289,8 +289,7 @@ position = Vector2(0, -9)
 
 [node name="playerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w5tob")
-animation = &"moveE"
-frame_progress = 0.0503187
+animation = &"moveS"
 
 [node name="playerCollider" type="CollisionShape2D" parent="."]
 visible = false
@@ -328,7 +327,7 @@ color = Color(0.494118, 0.0313726, 1, 1)
 energy = 0.2
 shadow_enabled = true
 texture = ExtResource("4_rv71t")
-texture_scale = 0.3
+texture_scale = 0.4
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="dashDuration" to="." method="_on_dash_duration_timeout"]

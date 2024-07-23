@@ -11,8 +11,6 @@ script = ExtResource("1_yj7su")
 [node name="LightRange" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oklgo")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="LightRay" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
 collision_mask = 7

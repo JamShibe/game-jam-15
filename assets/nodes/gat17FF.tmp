@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6au1ssvhx8jx"]
+
+[ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_bmjqs"]
+[ext_resource type="Script" path="res://assets/scripts/gateway.gd" id="1_v3eas"]
+[ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="2_6njnw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc7kv"]
+texture = ExtResource("1_bmjqs")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qtp5t"]
+sources/0 = SubResource("TileSetAtlasSource_yc7kv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfkc7"]
+size = Vector2(112, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3yq2"]
+size = Vector2(80, 20)
+
+[node name="Gateway" type="Node2D"]
+script = ExtResource("1_v3eas")
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_qtp5t")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131074, 0, 0, -65538, 0, 0, -65537, 0, 0, -1, 0, 0, 65535, 0, 0, 0, 0, 0, 65536, 0, 0, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 262142, 0, 0, -131073, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, -196608, 0, 0, -131072, 0, 0, -65536, 0, 0, 131072, 0, 0, 196608, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, -131075, 65536, 0, -65539, 65536, 0, -3, 65536, 0, 65533, 65536, 0, 131069, 65536, 0, 196605, 65536, 0, 262141, 65536, 0, -196605, 65536, 0, -131069, 65536, 0, -65533, 65536, 0, 3, 65536, 0, 65539, 65536, 0, 131075, 65536, 0, 196611, 65536, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 64)
+energy = 0.3
+blend_mode = 1
+texture = ExtResource("2_6njnw")
+texture_scale = 0.8
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(0, 64)
+energy = 0.2
+blend_mode = 1
+texture = ExtResource("2_6njnw")
+texture_scale = 0.8
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 72)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_xfkc7")
+
+[node name="blocker" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocker"]
+shape = SubResource("RectangleShape2D_n3yq2")
+one_way_collision = true

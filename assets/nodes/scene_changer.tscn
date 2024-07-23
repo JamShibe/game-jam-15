@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dycxseyuipj8p"]
+
+[ext_resource type="Script" path="res://assets/scripts/scene_changer.gd" id="1_g1mrn"]
+[ext_resource type="PackedScene" uid="uid://bb1fo5i3fd66m" path="res://assets/nodes/scene_transition.tscn" id="2_f3u3e"]
+
+[node name="SceneChanger" type="Node"]
+script = ExtResource("1_g1mrn")
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_f3u3e")]
+top_level = true
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = -1280.0
+offset_bottom = -720.0
+scale = Vector2(2, 2)
