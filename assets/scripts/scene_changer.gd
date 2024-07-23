@@ -1,6 +1,6 @@
 extends Node
 
-var number_of_rooms : int = 2
+var number_of_rooms : int = 3
 var link : String
 var current_level
 var changing_level : bool = false
