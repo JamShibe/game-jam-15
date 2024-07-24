@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dqeubdqhinxcb"]
+
+[ext_resource type="FontFile" uid="uid://cqoid4p7i2ami" path="res://assets/fonts/joystix monospace.otf" id="1_hulo5"]
+
+[resource]
+default_font = ExtResource("1_hulo5")
+default_font_size = 64

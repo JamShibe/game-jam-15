@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://i6k64o3iemyw"]
+
+[ext_resource type="PackedScene" uid="uid://dxg7spxwsygue" path="res://assets/nodes/ingredients_screen.tscn" id="1_q3uer"]
+[ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="2_b1pmq"]
+[ext_resource type="Script" path="res://assets/scripts/Button.gd" id="2_umsh4"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="3_xdvo5"]
+[ext_resource type="PackedScene" uid="uid://bsi1k5ro56vcp" path="res://assets/nodes/player_shop.tscn" id="4_xcywc"]
+[ext_resource type="PackedScene" uid="uid://bb1fo5i3fd66m" path="res://assets/nodes/scene_transition.tscn" id="5_m2tmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wj87u"]
+size = Vector2(48, 16)
+
+[node name="Death Screen" type="Node2D"]
+show_behind_parent = true
+z_index = -2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="ingredients_screen" parent="." instance=ExtResource("1_q3uer")]
+
+[node name="Button" type="Area2D" parent="."]
+script = ExtResource("2_umsh4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(0, 64)
+scale = Vector2(1.85, 1.85)
+texture = ExtResource("2_b1pmq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button"]
+offset_left = -24.0
+offset_top = 60.0
+offset_right = 456.0
+offset_bottom = 140.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme = ExtResource("3_xdvo5")
+bbcode_enabled = true
+text = "[center]Continue[/center]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_wj87u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0, 0.0392157, 1)
+
+[node name="player_shop" parent="." instance=ExtResource("4_xcywc")]
+position = Vector2(0, 64)
+scale = Vector2(1.85, 1.85)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 684.0
+offset_bottom = 4.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+theme = ExtResource("3_xdvo5")
+bbcode_enabled = true
+text = "[center]You Fainted![/center]"
+scroll_active = false
+
+[node name="SceneTransition" parent="." instance=ExtResource("5_m2tmr")]
+offset_left = -504.0
+offset_top = -432.0
+offset_right = 496.0
+offset_bottom = 568.0
+
+[connection signal="input_event" from="Button" to="Button" method="_on_input_event"]
+[connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="Button" method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="Button" to="Button" method="_on_mouse_shape_entered"]

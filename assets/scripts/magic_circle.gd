@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var recipe_list : Node2D
+
 @onready var point1 : Area2D = $point
 @onready var point2 : Area2D = $point2
 @onready var point3 : Area2D = $point3
@@ -24,4 +26,5 @@ func _process(delta):
 	if point6.is_clicked:
 		potion_id += 32
 	
-	print(potion_id)
+	if recipe_list:
+		recipe_list.potion_id = potion_id

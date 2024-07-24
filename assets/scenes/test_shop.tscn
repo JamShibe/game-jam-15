@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://lbi6hjixc81s"]
+[gd_scene load_steps=18 format=3 uid="uid://lbi6hjixc81s"]
 
 [ext_resource type="PackedScene" uid="uid://dvkwpb1axjioy" path="res://assets/nodes/workbench_screen.tscn" id="1_0p51f"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_rkpi6"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bondae15yc3t1" path="res://assets/nodes/customers_screen.tscn" id="6_4jwue"]
 [ext_resource type="PackedScene" uid="uid://dxg7spxwsygue" path="res://assets/nodes/ingredients_screen.tscn" id="7_jpd01"]
 [ext_resource type="PackedScene" uid="uid://xh08ahge432u" path="res://assets/nodes/arrow.tscn" id="7_m0hy2"]
+[ext_resource type="PackedScene" uid="uid://bsi1k5ro56vcp" path="res://assets/nodes/player_shop.tscn" id="9_cdwls"]
+[ext_resource type="Script" path="res://assets/scripts/Button.gd" id="10_s3yev"]
+[ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="11_ucsyg"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="12_l7w43"]
 
 [sub_resource type="Resource" id="Resource_boy6q"]
 script = ExtResource("3_84sdn")
@@ -33,11 +37,16 @@ duration = 0.5
 transition = 1
 ease = 2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbaaq"]
+size = Vector2(48, 16)
+
 [node name="test_shop" type="Node2D"]
+show_behind_parent = true
+z_index = -2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
-zoom = Vector2(7, 7)
+zoom = Vector2(5, 5)
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -47,16 +56,18 @@ script = ExtResource("1_rkpi6")
 position = Vector2(1, 0)
 script = ExtResource("2_nv3mj")
 priority = 1
-zoom = Vector2(7, 7)
+zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_boy6q")
+draw_limits = true
 
 [node name="workbench_screen" parent="." instance=ExtResource("1_0p51f")]
 
 [node name="UpgradesCam" type="Node2D" parent="."]
 position = Vector2(-275, 0)
 script = ExtResource("2_nv3mj")
-zoom = Vector2(7, 7)
+zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_yoden")
+draw_limits = true
 
 [node name="upgrades_screen" parent="." instance=ExtResource("5_3sm6g")]
 position = Vector2(-275, 0)
@@ -64,17 +75,19 @@ position = Vector2(-275, 0)
 [node name="CustomerCam" type="Node2D" parent="."]
 position = Vector2(275, 0)
 script = ExtResource("2_nv3mj")
-zoom = Vector2(7, 7)
+zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_hpc7w")
+draw_limits = true
 
 [node name="customers_screen" parent="." instance=ExtResource("6_4jwue")]
 position = Vector2(275, 0)
 
 [node name="IngredientsCam" type="Node2D" parent="."]
-position = Vector2(0, 154)
+position = Vector2(0, 152)
 script = ExtResource("2_nv3mj")
-zoom = Vector2(7, 7)
+zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_n3sva")
+draw_limits = true
 
 [node name="ingredients_screen" parent="." instance=ExtResource("7_jpd01")]
 position = Vector2(0, 153)
@@ -113,3 +126,37 @@ nextCam = NodePath("../IngredientsCam")
 position = Vector2(0, 90)
 currentCam = NodePath("../IngredientsCam")
 nextCam = NodePath("../WorkbenchCam")
+
+[node name="player_shop" parent="." instance=ExtResource("9_cdwls")]
+position = Vector2(-72, -64)
+
+[node name="Button" type="Area2D" parent="."]
+position = Vector2(0, -120)
+scale = Vector2(0.871664, 0.871664)
+script = ExtResource("10_s3yev")
+is_shop = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(0, 64)
+scale = Vector2(1.85, 1.85)
+texture = ExtResource("11_ucsyg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button"]
+offset_left = -24.0
+offset_top = 60.0
+offset_right = 456.0
+offset_bottom = 140.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme = ExtResource("12_l7w43")
+bbcode_enabled = true
+text = "[center]Continue[/center]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_qbaaq")
+
+[connection signal="input_event" from="Button" to="Button" method="_on_input_event"]
+[connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="Button" method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="Button" to="Button" method="_on_mouse_shape_entered"]

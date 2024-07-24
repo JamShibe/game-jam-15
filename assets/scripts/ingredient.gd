@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 
-var poss_ing : Array = ["Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone"]
+var poss_ing : Array = ["Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang"]
 var ing_name : String = ""
 
 # Called when the node enters the scene tree for the first time.
