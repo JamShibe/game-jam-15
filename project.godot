@@ -24,7 +24,6 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
-window/size/borderless=true
 window/stretch/mode="viewport"
 
 [editor_plugins]
