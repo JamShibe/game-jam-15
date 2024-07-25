@@ -1,5 +1,9 @@
 extends Node
 
+var potion_name : String = "Potion of Speed"
+var ingredients : Array = [1,1,0,0,1,0]
+var type : String = "[Drinkable]"
+
 var duration : int = 5
 
 func _ready():

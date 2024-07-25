@@ -18,7 +18,18 @@ var dir : Vector2
 var health : int = 100
 var damage : int = 0
 
+#Potion Effects:
+var speed_modifier : float = 0
+var dmg_modifier : float = 0
+var charmed : bool = false
+
 func _physics_process(delta: float) -> void:
+	
+	reset()
+	for child in get_children():
+		if child.has_method("effect"):
+			child.effect()
+	
 	if health <= 0:
 		queue_free()
 	if "position" in player:
@@ -27,13 +38,13 @@ func _physics_process(delta: float) -> void:
 		var next_path_pos := nav_agent.get_next_path_position()
 		dir = global_position.direction_to(next_path_pos)
 		set_anim()
-		velocity = dir * SPEED
+		velocity = dir * (SPEED + speed_modifier)
 		move_and_slide()
 		if "started" in player:
 			if raycast.get_collider() and player.started and timer.is_stopped():
 				if raycast.get_collider().name == player.name:
 					timer.start()
-	else:
+	elif !charmed:
 		if !attack_timer.is_stopped() and "position" in player:
 			velocity = dir * SPEED * 3
 			move_and_slide()
@@ -94,7 +105,7 @@ func _on_flash_timer_timeout():
 	dir = global_position.direction_to(player.position)
 	ghost_timer.start()
 	attack_timer.start()
-	damage = 20
+	damage = 20 + dmg_modifier
 
 func _on_attack_timer_timeout():
 	damage = 0
@@ -108,3 +119,12 @@ func _on_ghost_timer_timeout():
 	ghost.set_property(position, sprite.scale, sprite.frame, sprite.sprite_frames, sprite.animation, rotation)
 	#Adds ghost into the scene
 	get_tree().current_scene.add_child(ghost)
+
+func reset():
+	if health > 100:
+		health = 100
+	speed_modifier = 0
+	dmg_modifier = 0
+	sprite.scale.y = 1
+	modulate = Color(1,1,1,1)
+	charmed = false

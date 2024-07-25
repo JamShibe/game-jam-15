@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://00tt2ie2gn6u"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_effects/11.gd" id="1_mgycr"]
+[ext_resource type="PackedScene" uid="uid://cpvexnvlk5yq5" path="res://assets/nodes/fire.tscn" id="2_h8o4c"]
+
+[node name="11" type="Node"]
+script = ExtResource("1_mgycr")
+fire = ExtResource("2_h8o4c")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

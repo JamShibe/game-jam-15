@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://14rrfo0mck6y"]
+[gd_scene load_steps=15 format=3 uid="uid://14rrfo0mck6y"]
 
 [ext_resource type="Texture2D" uid="uid://bojdcpy4uihyc" path="res://assets/sprites/temp_moss.png" id="1_dcxwk"]
 [ext_resource type="Script" path="res://assets/scripts/ingredient.gd" id="1_rblxc"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bmxpqwxtxjb53" path="res://assets/sprites/cinder_2.png" id="4_ush0w"]
 [ext_resource type="Texture2D" uid="uid://cpb3lqiog56fr" path="res://assets/sprites/cinder_3.png" id="5_bxwle"]
 [ext_resource type="Texture2D" uid="uid://dwv0konc8swxl" path="res://assets/sprites/dock_leaf.png" id="6_ayk0d"]
+[ext_resource type="Texture2D" uid="uid://bylx6dmrnnjf7" path="res://assets/sprites/GiantSpiderFang.png" id="7_i8mft"]
 [ext_resource type="Texture2D" uid="uid://djk5tploj3pqy" path="res://assets/sprites/hollow_bone.png" id="7_k82xe"]
 [ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="8_kx53b"]
+[ext_resource type="Texture2D" uid="uid://dpvtgnrq68uuw" path="res://assets/sprites/magicIce1.png" id="9_4b7e6"]
+[ext_resource type="Texture2D" uid="uid://ph4iyoiteowt" path="res://assets/sprites/magicIce2.png" id="10_505tr"]
+[ext_resource type="Texture2D" uid="uid://bbic8bslbawu4" path="res://assets/sprites/magicIce3.png" id="11_6xnyg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgjan"]
 
@@ -45,11 +49,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_i8mft")
+}],
+"loop": true,
+"name": &"Giant Spider Fang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_k82xe")
 }],
 "loop": true,
 "name": &"Hollowed Bone",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_4b7e6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_505tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6xnyg")
+}],
+"loop": true,
+"name": &"Magic-Imbued Ice",
+"speed": 2.0
 }]
 
 [node name="Ingredient" type="Area2D"]
@@ -62,8 +88,7 @@ shape = SubResource("CircleShape2D_mgjan")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5x7yp")
-animation = &"Cave Moss"
-frame_progress = 0.461519
+animation = &"Giant Spider Fang"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.1

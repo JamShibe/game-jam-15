@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpin01gv7cmvf"]
+
+[ext_resource type="Texture2D" uid="uid://ch5esrbp5sgm4" path="res://assets/sprites/tempHeart.png" id="1_mg8nx"]
+[ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="2_c3hhl"]
+
+[node name="Hearts" type="CPUParticles2D"]
+z_index = 10
+amount = 2
+texture = ExtResource("1_mg8nx")
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+scale_amount_min = 0.5
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 1, 1)
+energy = 0.1
+texture = ExtResource("2_c3hhl")
+texture_scale = 0.1

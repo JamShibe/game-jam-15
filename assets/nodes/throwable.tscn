@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw7ohwc8mhp0v"]
+
+[ext_resource type="Script" path="res://assets/scripts/throwable.gd" id="1_2ere2"]
+[ext_resource type="Texture2D" uid="uid://bu1ispe26k83b" path="res://assets/sprites/tempThrowable.png" id="1_kr61o"]
+[ext_resource type="PackedScene" uid="uid://c1rpqaqv65auq" path="res://assets/nodes/potions/potion_cloud.tscn" id="2_iejn3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vh56"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kr61o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yi2h4"]
+radius = 8.0
+
+[node name="Throwable" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_2ere2")
+cloud = ExtResource("2_iejn3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3vh56")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yi2h4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

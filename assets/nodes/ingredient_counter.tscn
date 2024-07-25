@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://b16vgolyoglm4"]
+
+[ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="1_eifvu"]
+[ext_resource type="Texture2D" uid="uid://bojdcpy4uihyc" path="res://assets/sprites/temp_moss.png" id="2_n4d0i"]
+[ext_resource type="Script" path="res://assets/scripts/ingredient_counter.gd" id="2_pg08r"]
+[ext_resource type="Texture2D" uid="uid://dlolfv4tfqxe8" path="res://assets/sprites/cinder_1.png" id="3_rr167"]
+[ext_resource type="Texture2D" uid="uid://bmxpqwxtxjb53" path="res://assets/sprites/cinder_2.png" id="4_tlg2p"]
+[ext_resource type="Texture2D" uid="uid://cpb3lqiog56fr" path="res://assets/sprites/cinder_3.png" id="5_1fsb3"]
+[ext_resource type="Texture2D" uid="uid://dwv0konc8swxl" path="res://assets/sprites/dock_leaf.png" id="6_im8pt"]
+[ext_resource type="Texture2D" uid="uid://bylx6dmrnnjf7" path="res://assets/sprites/GiantSpiderFang.png" id="7_mwpi1"]
+[ext_resource type="Texture2D" uid="uid://djk5tploj3pqy" path="res://assets/sprites/hollow_bone.png" id="8_kl41q"]
+[ext_resource type="Texture2D" uid="uid://dpvtgnrq68uuw" path="res://assets/sprites/magicIce1.png" id="9_fcyra"]
+[ext_resource type="Texture2D" uid="uid://ph4iyoiteowt" path="res://assets/sprites/magicIce2.png" id="10_4c3ma"]
+[ext_resource type="Texture2D" uid="uid://bbic8bslbawu4" path="res://assets/sprites/magicIce3.png" id="11_bcg58"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="12_brhx4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0c6yw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n4d0i")
+}],
+"loop": true,
+"name": &"Cave Moss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rr167")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tlg2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1fsb3")
+}],
+"loop": true,
+"name": &"Cindered Coal",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_im8pt")
+}],
+"loop": true,
+"name": &"Dock Leaf",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_mwpi1")
+}],
+"loop": true,
+"name": &"Giant Spider Fang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kl41q")
+}],
+"loop": true,
+"name": &"Hollowed Bone",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_fcyra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4c3ma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bcg58")
+}],
+"loop": true,
+"name": &"Magic-Imbued Ice",
+"speed": 2.0
+}]
+
+[node name="Ingredient_counter" type="Sprite2D"]
+texture = ExtResource("1_eifvu")
+script = ExtResource("2_pg08r")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, 0)
+scale = Vector2(0.439998, 0.439998)
+sprite_frames = SubResource("SpriteFrames_0c6yw")
+animation = &"Giant Spider Fang"
+frame_progress = 0.580991
+
+[node name="text" type="RichTextLabel" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 529.0
+offset_bottom = 263.0
+scale = Vector2(0.03, 0.03)
+theme = ExtResource("12_brhx4")
+text = "Giant Spider Fang x50"

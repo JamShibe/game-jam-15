@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5slrhj6n2ls7"]
+[gd_scene load_steps=8 format=3 uid="uid://b5slrhj6n2ls7"]
 
 [ext_resource type="Script" path="res://assets/scripts/result_screen.gd" id="1_kvgwl"]
 [ext_resource type="Texture2D" uid="uid://d0wfj23sh0i8n" path="res://assets/sprites/potionOutline.png" id="1_p7op4"]
 [ext_resource type="Texture2D" uid="uid://bwr1ng0cqs18q" path="res://assets/sprites/potionInner.png" id="2_e441g"]
+[ext_resource type="Texture2D" uid="uid://q074ntg6k8x7" path="res://assets/sprites/makesText.png" id="4_3y7k1"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="5_oo4xu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1b6v"]
 animations = [{
@@ -30,7 +32,35 @@ animations = [{
 script = ExtResource("1_kvgwl")
 
 [node name="Outline" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_e1b6v")
 
 [node name="Contents" type="AnimatedSprite2D" parent="Outline"]
+modulate = Color(0, 0.627451, 1, 1)
 sprite_frames = SubResource("SpriteFrames_u6u47")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("4_3y7k1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -20.0
+offset_right = 1287.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+mouse_filter = 2
+theme = ExtResource("5_oo4xu")
+theme_override_colors/default_color = Color(0.447059, 0.176471, 0, 1)
+bbcode_enabled = true
+text = "[center]Potion Of Blind Affection
+[Drinkable][/center]"
+scroll_active = false
