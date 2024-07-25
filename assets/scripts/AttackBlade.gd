@@ -21,7 +21,6 @@ func _on_life_timer_timeout():
 	queue_free()
 	
 func _on_area_2d_body_entered(body):
-	visible = false
 	if "health" in body:
 		body.health -= damage
 	else:

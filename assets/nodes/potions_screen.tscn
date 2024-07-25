@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://btkr2puubuw3b"]
+[gd_scene load_steps=5 format=3 uid="uid://btkr2puubuw3b"]
 
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_yey6s"]
 [ext_resource type="Texture2D" uid="uid://dsfvxhymife8f" path="res://assets/sprites/text/potionsText.png" id="2_d5bky"]
+[ext_resource type="PackedScene" uid="uid://bxjb03cywd4o" path="res://assets/nodes/potion_inventory.tscn" id="3_8va5b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jwly"]
 animations = [{
@@ -22,3 +23,6 @@ sprite_frames = SubResource("SpriteFrames_0jwly")
 [node name="title" type="Sprite2D" parent="."]
 position = Vector2(0, -43)
 texture = ExtResource("2_d5bky")
+
+[node name="PotionInventory" parent="." instance=ExtResource("3_8va5b")]
+position = Vector2(-80, -30)

@@ -3,6 +3,7 @@ extends Node
 var potion_name : String = "Potion of Fire"
 var ingredients : Array = [0,0,5,1,0,0]
 var type : String = "[Throwable]"
+var value : int = 80
 
 var duration : int = 5
 

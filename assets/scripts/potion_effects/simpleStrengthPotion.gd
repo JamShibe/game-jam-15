@@ -3,6 +3,7 @@ extends Node
 var potion_name : String = "Potion of Strength"
 var ingredients : Array = [1,0,2,0,0,0]
 var type : String = "[Drinkable]"
+var value : int = 50
 
 var duration : int = 5
 

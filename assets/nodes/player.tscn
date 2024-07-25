@@ -333,7 +333,7 @@ one_shot = true
 
 [node name="light" type="PointLight2D" parent="."]
 z_index = 1
-color = Color(0.494118, 0.0313726, 1, 1)
+color = Color(0.568627, 0.831373, 0.85098, 1)
 energy = 0.2
 shadow_enabled = true
 texture = ExtResource("4_rv71t")

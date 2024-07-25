@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_nv3mj"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_84sdn"]
 [ext_resource type="PackedScene" uid="uid://dtj1tbewolah0" path="res://assets/nodes/upgrades_screen.tscn" id="5_3sm6g"]
-[ext_resource type="PackedScene" uid="uid://bondae15yc3t1" path="res://assets/nodes/customers_screen.tscn" id="6_4jwue"]
+[ext_resource type="PackedScene" uid="uid://btkr2puubuw3b" path="res://assets/nodes/potions_screen.tscn" id="6_g0kxq"]
 [ext_resource type="PackedScene" uid="uid://dxg7spxwsygue" path="res://assets/nodes/ingredients_screen.tscn" id="7_jpd01"]
 [ext_resource type="PackedScene" uid="uid://xh08ahge432u" path="res://assets/nodes/arrow.tscn" id="7_m0hy2"]
 [ext_resource type="PackedScene" uid="uid://bsi1k5ro56vcp" path="res://assets/nodes/player_shop.tscn" id="9_cdwls"]
@@ -72,15 +72,15 @@ draw_limits = true
 [node name="upgrades_screen" parent="." instance=ExtResource("5_3sm6g")]
 position = Vector2(-275, 0)
 
-[node name="CustomerCam" type="Node2D" parent="."]
+[node name="PotionsCam" type="Node2D" parent="."]
 position = Vector2(275, 0)
 script = ExtResource("2_nv3mj")
 zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_hpc7w")
 draw_limits = true
 
-[node name="customers_screen" parent="." instance=ExtResource("6_4jwue")]
-position = Vector2(275, 0)
+[node name="potions_screen" parent="." instance=ExtResource("6_g0kxq")]
+position = Vector2(276, 0)
 
 [node name="IngredientsCam" type="Node2D" parent="."]
 position = Vector2(0, 152)
@@ -96,7 +96,7 @@ position = Vector2(0, 153)
 position = Vector2(110, 0)
 rotation = 1.5708
 currentCam = NodePath("../WorkbenchCam")
-nextCam = NodePath("../CustomerCam")
+nextCam = NodePath("../PotionsCam")
 
 [node name="Arrow2" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
 position = Vector2(-110, 0)
@@ -113,7 +113,7 @@ nextCam = NodePath("../WorkbenchCam")
 [node name="Arrow4" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]
 position = Vector2(165, 0)
 rotation = 4.71239
-currentCam = NodePath("../CustomerCam")
+currentCam = NodePath("../PotionsCam")
 nextCam = NodePath("../WorkbenchCam")
 
 [node name="Arrow5" parent="." node_paths=PackedStringArray("currentCam", "nextCam") instance=ExtResource("7_m0hy2")]

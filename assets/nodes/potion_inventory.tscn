@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxjb03cywd4o"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_inventory.gd" id="1_1tufo"]
+[ext_resource type="PackedScene" uid="uid://dv2ga0u825thd" path="res://assets/nodes/potion_tab.tscn" id="2_wklmd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2l2p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_0vb8i"]
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_q2l2p")
+
+[node name="PotionInventory" type="Node2D"]
+script = ExtResource("1_1tufo")
+potion_tab = ExtResource("2_wklmd")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_right = 160.0
+offset_bottom = 75.0
+pivot_offset = Vector2(80, 0)
+mouse_filter = 2
+theme = SubResource("Theme_0vb8i")
+horizontal_scroll_mode = 0
+
+[node name="Control" type="Control" parent="ScrollContainer"]
+custom_minimum_size = Vector2(160, 500)
+layout_mode = 2
