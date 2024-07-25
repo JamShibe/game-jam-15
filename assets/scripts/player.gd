@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var invun_time : Timer = $invunTimer
 @onready var attack_time : Timer = $attackTimer
 @onready var drink_cooldown : Timer = $drinkCooldown
+@onready var throw_cooldown : Timer = $throwCooldown
 @onready var attack_centre : Node2D = $AttackCentre
 @onready var attack_point : Node2D = $AttackCentre/AttackPoint
 @onready var light : PointLight2D = $light
@@ -34,6 +35,7 @@ var started : bool = false
 var health : float = 200
 var damage : float = 20
 var ing_list : Array = []
+var potions_in_use = []
 
 #Potion Effects:
 var speed_modifier : float = 0
@@ -212,7 +214,7 @@ func shoot():
 		attack.velocity = dir * 150
 		
 func check_throw():
-	if !charmed:
+	if !charmed and throw_cooldown.is_stopped():
 		aim_line.clear_points()
 		if Input.is_action_pressed("right_click"):
 			aim.target_position = get_global_mouse_position() - global_position
@@ -223,6 +225,7 @@ func check_throw():
 			else:
 				aim_line.add_point(get_global_mouse_position() - global_position)
 		if Input.is_action_just_released("right_click"):
+			throw_cooldown.start()
 			if throwable:
 				var projectile = throwable.instantiate()
 				projectile.position = position
@@ -230,8 +233,9 @@ func check_throw():
 				projectile.target = get_global_mouse_position()
 		
 func death():
-	visible = false
-	started = false
-	var manager = get_parent().get_parent()
-	if manager.has_method("death"):
-		manager.death()
+	if visible == true:
+		visible = false
+		started = false
+		var manager = get_parent().get_parent()
+		if manager.has_method("death"):
+			manager.death()

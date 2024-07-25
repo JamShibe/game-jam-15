@@ -62,9 +62,8 @@ draw_limits = true
 
 [node name="workbench_screen" parent="." instance=ExtResource("1_0p51f")]
 
-[node name="Button2" parent="workbench_screen" index="6" node_paths=PackedStringArray("player", "potion_list")]
+[node name="Button2" parent="workbench_screen" index="6" node_paths=PackedStringArray("player")]
 player = NodePath("../../player_shop")
-potion_list = NodePath("../../potions_screen")
 
 [node name="UpgradesCam" type="Node2D" parent="."]
 position = Vector2(-275, 0)
@@ -83,9 +82,8 @@ zoom = Vector2(5, 5)
 tween_resource = SubResource("Resource_hpc7w")
 draw_limits = true
 
-[node name="potions_screen" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_g0kxq")]
+[node name="potions_screen" parent="." instance=ExtResource("6_g0kxq")]
 position = Vector2(276, 0)
-player = NodePath("../player_shop")
 
 [node name="IngredientsCam" type="Node2D" parent="."]
 position = Vector2(0, 152)

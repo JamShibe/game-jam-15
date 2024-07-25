@@ -5,6 +5,8 @@ var Ingredients : Array
 
 @onready var text : RichTextLabel = $RichTextLabel
 
+@export var button : Area2D
+
 var list_of_none_potions : Array = [0,1,2,4,8,16,32]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,4 +46,4 @@ func set_text(ingr : Array):
 	if fang > 0:
 		string = string + str(fang) + " Giant Spider Fang\n"
 	text.text = string
-	
+	button.check_recipe()

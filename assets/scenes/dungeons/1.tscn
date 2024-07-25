@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dyej7oden0p3r" path="res://assets/nodes/light_area.tscn" id="4_w0mho"]
 [ext_resource type="PackedScene" uid="uid://dv6fcldiygqo5" path="res://assets/nodes/player.tscn" id="5_106sq"]
 [ext_resource type="PackedScene" uid="uid://cqedk03vyob01" path="res://assets/nodes/basic_enemy.tscn" id="6_jfcxa"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_a4j8l"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_s645f"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_uas6x"]
+[ext_resource type="PackedScene" uid="uid://bg6ugbecb6cwm" path="res://assets/nodes/camera_2d.tscn" id="10_mvpys"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3xlh0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -139,15 +139,11 @@ position = Vector2(-344, -296)
 position = Vector2(-344, -520)
 rotation = 3.14159
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_mvpys")]
 position = Vector2(-352, 376)
-zoom = Vector2(5, 5)
 limit_left = -480
 limit_top = -512
-editor_draw_limits = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("7_a4j8l")
+player = NodePath("../player")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 position = Vector2(-352, 376)

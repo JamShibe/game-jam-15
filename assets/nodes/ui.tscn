@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvyvann6m730d"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui.gd" id="1_bkd42"]
+[ext_resource type="Texture2D" uid="uid://dj8wrx8jhhxt4" path="res://assets/sprites/box.png" id="1_n64nf"]
+[ext_resource type="Texture2D" uid="uid://dfrp668f3mxjg" path="res://assets/sprites/potion.png" id="2_6h5xw"]
+[ext_resource type="Texture2D" uid="uid://bu1ispe26k83b" path="res://assets/sprites/tempThrowable.png" id="4_psvwk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhfdg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6h5xw")
+}],
+"loop": true,
+"name": &"Drinkable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_psvwk")
+}],
+"loop": true,
+"name": &"Throwable",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="UI" type="Node2D"]
+z_index = 99
+script = ExtResource("1_bkd42")
+
+[node name="box" type="Sprite2D" parent="."]
+show_behind_parent = true
+light_mask = 0
+texture = ExtResource("1_n64nf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="box"]
+show_behind_parent = true
+light_mask = 0
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_jhfdg")
+animation = &"Drinkable"
+
+[node name="ColorRect" type="ColorRect" parent="box/AnimatedSprite2D"]
+show_behind_parent = true
+light_mask = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.667105, 0.920953, 0.997653, 1)
+metadata/_edit_use_anchors_ = true

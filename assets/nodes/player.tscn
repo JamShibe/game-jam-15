@@ -331,6 +331,14 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="drinkCooldown" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="throwCooldown" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [node name="light" type="PointLight2D" parent="."]
 z_index = 1
 color = Color(0.568627, 0.831373, 0.85098, 1)
@@ -346,10 +354,6 @@ rotation = 1.5708
 position = Vector2(8, 0)
 
 [node name="Potion" parent="." instance=ExtResource("7_mkp1j")]
-
-[node name="drinkCooldown" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="throwingAim" type="RayCast2D" parent="."]
 collision_mask = 5

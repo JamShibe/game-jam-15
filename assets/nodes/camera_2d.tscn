@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg6ugbecb6cwm"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_5c8ow"]
+[ext_resource type="Script" path="res://assets/nodes/camera_2d.gd" id="1_u052s"]
+[ext_resource type="PackedScene" uid="uid://cvyvann6m730d" path="res://assets/nodes/ui.tscn" id="2_ejwlf"]
+
+[node name="Camera2D" type="Camera2D"]
+light_mask = 0
+zoom = Vector2(5, 5)
+script = ExtResource("1_u052s")
+
+[node name="PhantomCameraHost" type="Node" parent="."]
+script = ExtResource("1_5c8ow")
+
+[node name="UI2" parent="." instance=ExtResource("2_ejwlf")]
+light_mask = 0
+position = Vector2(-99, 61)
+
+[node name="UI" parent="." instance=ExtResource("2_ejwlf")]
+light_mask = 0
+position = Vector2(-117, 61)

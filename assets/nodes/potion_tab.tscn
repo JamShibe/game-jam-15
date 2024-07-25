@@ -27,5 +27,6 @@ offset_top = -8.0
 offset_right = 632.0
 offset_bottom = 312.0
 scale = Vector2(0.05, 0.05)
+mouse_filter = 2
 theme = ExtResource("5_m28dp")
 bbcode_enabled = true

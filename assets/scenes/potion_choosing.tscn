@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bna8h5mkurjkr"]
+
+[ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_c6kme"]
+[ext_resource type="Texture2D" uid="uid://dsfvxhymife8f" path="res://assets/sprites/text/potionsText.png" id="2_akroy"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="3_rytby"]
+[ext_resource type="PackedScene" uid="uid://d4lbbeo85tj8h" path="res://assets/nodes/potion_choose.tscn" id="4_t5dp2"]
+[ext_resource type="Script" path="res://assets/scripts/Potion_choose_button.gd" id="5_nv3ec"]
+[ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="6_caj1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5g1"]
+size = Vector2(48, 16)
+
+[node name="potion_choosing" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_c6kme")
+
+[node name="title" type="Sprite2D" parent="."]
+position = Vector2(0, -43)
+texture = ExtResource("2_akroy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -38.0
+offset_top = -70.0
+offset_right = 712.0
+offset_bottom = 130.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme = ExtResource("3_rytby")
+bbcode_enabled = true
+text = "[center]Choose Your Potions![/center]"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.5, 4.5)
+
+[node name="PotionChoose" parent="." instance=ExtResource("4_t5dp2")]
+position = Vector2(-80, -30)
+
+[node name="Potion_choose_button" type="Area2D" parent="." node_paths=PackedStringArray("potions")]
+script = ExtResource("5_nv3ec")
+potions = NodePath("../PotionChoose")
+
+[node name="Sprite2D" type="Sprite2D" parent="Potion_choose_button"]
+position = Vector2(0, 64)
+scale = Vector2(1.85, 1.85)
+texture = ExtResource("6_caj1u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Potion_choose_button"]
+offset_left = -24.0
+offset_top = 60.0
+offset_right = 456.0
+offset_bottom = 140.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme = ExtResource("3_rytby")
+bbcode_enabled = true
+text = "[center]Continue[/center]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Potion_choose_button"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_wa5g1")
+
+[connection signal="input_event" from="Potion_choose_button" to="Potion_choose_button" method="_on_input_event"]
+[connection signal="mouse_entered" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_shape_entered"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_uvaqq"]
 [ext_resource type="PackedScene" uid="uid://b3m6qxxnywd82" path="res://assets/nodes/Gateway.tscn" id="2_x45u0"]
 [ext_resource type="PackedScene" uid="uid://dv6fcldiygqo5" path="res://assets/nodes/player.tscn" id="3_ysksg"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_0n8v8"]
+[ext_resource type="PackedScene" uid="uid://bg6ugbecb6cwm" path="res://assets/nodes/camera_2d.tscn" id="5_5cvwj"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_u3hbs"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_pceio"]
 [ext_resource type="PackedScene" uid="uid://cqedk03vyob01" path="res://assets/nodes/basic_enemy.tscn" id="7_kxotn"]
@@ -64,14 +64,10 @@ is_entrance = true
 [node name="player" parent="." instance=ExtResource("3_ysksg")]
 position = Vector2(-88, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" parent="." instance=ExtResource("5_5cvwj")]
 position = Vector2(-128, 0)
-zoom = Vector2(5, 5)
 limit_right = 0
 limit_bottom = 416
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("4_0n8v8")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 position = Vector2(-128, 0)

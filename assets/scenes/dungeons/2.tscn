@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dyej7oden0p3r" path="res://assets/nodes/light_area.tscn" id="5_7cf2s"]
 [ext_resource type="PackedScene" uid="uid://cqedk03vyob01" path="res://assets/nodes/basic_enemy.tscn" id="6_v6xum"]
 [ext_resource type="PackedScene" uid="uid://14rrfo0mck6y" path="res://assets/nodes/ingredient.tscn" id="9_4g6gh"]
+[ext_resource type="PackedScene" uid="uid://bg6ugbecb6cwm" path="res://assets/nodes/camera_2d.tscn" id="10_mmtos"]
 [ext_resource type="PackedScene" uid="uid://b3m6qxxnywd82" path="res://assets/nodes/Gateway.tscn" id="10_psrv3"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_0j72v"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_fnbkw"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_b6qeo"]
 
@@ -194,20 +194,10 @@ is_entrance = true
 position = Vector2(-88, -777)
 rotation = 3.14159
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" parent="." instance=ExtResource("10_mmtos")]
 position = Vector2(185, 292)
-zoom = Vector2(5, 5)
 limit_top = -760
 limit_bottom = 380
-position_smoothing_speed = 8.0
-drag_left_margin = 0.05
-drag_top_margin = 0.05
-drag_right_margin = 0.05
-drag_bottom_margin = 0.05
-editor_draw_limits = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("11_0j72v")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 position = Vector2(185, 292)

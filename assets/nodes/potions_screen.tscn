@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://btkr2puubuw3b"]
+[gd_scene load_steps=6 format=3 uid="uid://btkr2puubuw3b"]
 
+[ext_resource type="Script" path="res://assets/scripts/potions_screen.gd" id="1_b8a61"]
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_yey6s"]
 [ext_resource type="Texture2D" uid="uid://dsfvxhymife8f" path="res://assets/sprites/text/potionsText.png" id="2_d5bky"]
 [ext_resource type="PackedScene" uid="uid://bxjb03cywd4o" path="res://assets/nodes/potion_inventory.tscn" id="3_8va5b"]
@@ -16,6 +17,7 @@ animations = [{
 }]
 
 [node name="potions_screen" type="Node2D"]
+script = ExtResource("1_b8a61")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0jwly")
