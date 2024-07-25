@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dayxn8s0cm2i7"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_effects/12.gd" id="1_gx74e"]
+[ext_resource type="PackedScene" uid="uid://cpin01gv7cmvf" path="res://assets/nodes/hearts.tscn" id="2_mydcb"]
+
+[node name="12" type="Node"]
+script = ExtResource("1_gx74e")
+hearts = ExtResource("2_mydcb")

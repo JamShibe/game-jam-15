@@ -3,7 +3,7 @@ extends Node
 @onready var parent : Node2D = get_parent()
 @onready var effects : Array = get_children()
 
-var duration : float = 2
+var duration : float = 5
 var effects_id : Array = [15]
 
 func use() -> void:

@@ -3,6 +3,7 @@ extends CharacterBody2D
 #Imports nodes in "player" Inspector (Menu on the right when u click on player)
 @export var ghost_node : PackedScene
 @export var attack_node : PackedScene
+@export var throwable : PackedScene
 
 #Imports some child nodes
 @onready var sprite : AnimatedSprite2D = $playerSprite
@@ -12,9 +13,12 @@ extends CharacterBody2D
 @onready var sizzle_time : Timer = $sizzleTime
 @onready var invun_time : Timer = $invunTimer
 @onready var attack_time : Timer = $attackTimer
+@onready var drink_cooldown : Timer = $drinkCooldown
 @onready var attack_centre : Node2D = $AttackCentre
 @onready var attack_point : Node2D = $AttackCentre/AttackPoint
 @onready var light : PointLight2D = $light
+@onready var aim : RayCast2D = $throwingAim
+@onready var aim_line : Line2D = $aimLine
 @onready var camera : PhantomCamera2D = get_parent().find_child("PhantomCamera2D")
 
 #Defines Original Speed constant. Speed variable will be changed via dashing and then set back to original speed
@@ -27,22 +31,21 @@ var current_frame : int
 var current_progress : float
 var sizzle_amount : int = 0
 var started : bool = false
-var health : float = 100
+var health : float = 200
 var damage : float = 20
 var ing_list : Array = []
 
 #Potion Effects:
 var speed_modifier : float = 0
 var dmg_modifier : float = 0
+var charmed : bool = false
 
 #_physics_process is run every single frame.
 func _physics_process(delta) -> void:
 	#Runs the move player function
-	sizzle(false)
 	move_player()
 	if health <= 0:
-		#DEATH HERE
-		visible = false
+		death()
 
 func move_player() -> void:
 	#Resets input_vector to zero
@@ -64,7 +67,11 @@ func move_player() -> void:
 		shoot()
 		
 	if Input.is_action_pressed("drink"):
-		use_potion()
+		if drink_cooldown.is_stopped():
+			drink_cooldown.start()
+			use_potion()
+			
+	check_throw()
 
 	if input_vector:
 		#once player moves for the first time, started is set to true
@@ -152,12 +159,14 @@ func sizzle(is_sizzling : bool) -> void:
 		speed = (ORIG_SPEED + speed_modifier) / 3
 	if sizzle_amount > 50 and sizzle_time.is_stopped():
 		sizzle_time.start()
+		modulate = Color(1, 1, 0)
 	elif sizzle_amount < 50 and !sizzle_time.is_stopped():
 		sizzle_time.stop()
+	if !sizzle_time.is_stopped():
+		modulate = Color(1, 1, 0)
 		
 func _on_sizzle_time_timeout() -> void:
-	#DEATH HERE
-	visible = false
+	death()
 
 func _on_hitbox_body_entered(body):
 	if "damage" in body and invun_time.is_stopped():
@@ -174,19 +183,23 @@ func use_potion():
 		find_child("Potion").use()
 		
 func reset():
-	if health > 100:
-		health = 100
+	if health > 200:
+		health = 200
 	speed_modifier = 0
 	dmg_modifier = 0
 	light.texture_scale = 0.4
 	camera.zoom = Vector2(5 , 5)
+	sprite.scale.y = 1
+	modulate = Color(1,1,1,1)
+	charmed = false
+	sizzle(false)
 
 func pickup(name : String):
 	ing_list.append(name)
 	print(ing_list)
 	
 func shoot():
-	if attack_time.is_stopped():
+	if attack_time.is_stopped() and !charmed:
 		attack_time.start()
 		var attack = attack_node.instantiate()
 		get_parent().add_child(attack)
@@ -196,4 +209,27 @@ func shoot():
 		attack.damage = damage + dmg_modifier
 		attack.velocity = dir * 150
 		
-	
+func check_throw():
+	if !charmed:
+		aim_line.clear_points()
+		if Input.is_action_pressed("right_click"):
+			aim.target_position = get_global_mouse_position() - global_position
+			var target = aim.get_collision_point()
+			aim_line.add_point(Vector2.ZERO)
+			if aim.is_colliding():
+				aim_line.add_point(target - global_position)
+			else:
+				aim_line.add_point(get_global_mouse_position() - global_position)
+		if Input.is_action_just_released("right_click"):
+			if throwable:
+				var projectile = throwable.instantiate()
+				projectile.position = position
+				get_parent().add_child(projectile)
+				projectile.target = get_global_mouse_position()
+		
+func death():
+	visible = false
+	started = false
+	var manager = get_parent().get_parent()
+	if manager.has_method("death"):
+		manager.death()

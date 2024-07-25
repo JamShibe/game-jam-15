@@ -1,12 +1,14 @@
-[gd_scene load_steps=43 format=3 uid="uid://dv6fcldiygqo5"]
+[gd_scene load_steps=45 format=3 uid="uid://dv6fcldiygqo5"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_58cn2"]
 [ext_resource type="Texture2D" uid="uid://by50wukyi5bdm" path="res://assets/sprites/spritesheets/tempPlayerSpritesheet.png" id="2_wiiac"]
 [ext_resource type="PackedScene" uid="uid://dpafmudyt5c8h" path="res://assets/nodes/ghost.tscn" id="2_x44bf"]
 [ext_resource type="PackedScene" uid="uid://bh8i2x58qeur1" path="res://assets/nodes/attack_blade.tscn" id="3_2mmr3"]
 [ext_resource type="PackedScene" uid="uid://b73ixacvpdohi" path="res://assets/nodes/healthbar.tscn" id="3_4dvyc"]
+[ext_resource type="PackedScene" uid="uid://bw7ohwc8mhp0v" path="res://assets/nodes/throwable.tscn" id="4_cg721"]
 [ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="4_rv71t"]
 [ext_resource type="PackedScene" uid="uid://cudo0kdaavx3k" path="res://assets/nodes/potions/potion.tscn" id="7_mkp1j"]
+[ext_resource type="PackedScene" uid="uid://s13rboi7lxgo" path="res://assets/nodes/aim_line.tscn" id="8_v1jcn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n8ob"]
 atlas = ExtResource("2_wiiac")
@@ -286,6 +288,7 @@ collision_layer = 2
 script = ExtResource("1_58cn2")
 ghost_node = ExtResource("2_x44bf")
 attack_node = ExtResource("3_2mmr3")
+throwable = ExtResource("4_cg721")
 
 [node name="healthbar" parent="." instance=ExtResource("3_4dvyc")]
 position = Vector2(0, -9)
@@ -343,6 +346,16 @@ rotation = 1.5708
 position = Vector2(8, 0)
 
 [node name="Potion" parent="." instance=ExtResource("7_mkp1j")]
+
+[node name="drinkCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="throwingAim" type="RayCast2D" parent="."]
+collision_mask = 5
+
+[node name="aimLine" parent="." instance=ExtResource("8_v1jcn")]
+width = 1.0
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="dashDuration" to="." method="_on_dash_duration_timeout"]

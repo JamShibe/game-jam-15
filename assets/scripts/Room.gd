@@ -6,5 +6,5 @@ var next_room : bool = false
 
 func _process(delta):
 	if exit.next_room:
-		next_room = exit.next_room
+		get_parent().next_room()
 			

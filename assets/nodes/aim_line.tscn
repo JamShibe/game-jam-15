@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://s13rboi7lxgo"]
+
+[ext_resource type="Texture2D" uid="uid://b5yfwy3c8l7kt" path="res://assets/sprites/tempAim.png" id="1_gpgbu"]
+
+[node name="aimLine" type="Line2D"]
+texture_repeat = 2
+texture = ExtResource("1_gpgbu")
+texture_mode = 1
