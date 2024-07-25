@@ -187,8 +187,10 @@ func reset():
 		health = 200
 	speed_modifier = 0
 	dmg_modifier = 0
-	light.texture_scale = 0.4
-	camera.zoom = Vector2(5 , 5)
+	if light:
+		light.texture_scale = 0.4
+	if camera:
+		camera.zoom = Vector2(5 , 5)
 	sprite.scale.y = 1
 	modulate = Color(1,1,1,1)
 	charmed = false
