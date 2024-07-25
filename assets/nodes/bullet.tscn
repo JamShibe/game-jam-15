@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cctnq3uf0q2nm"]
+
+[ext_resource type="Texture2D" uid="uid://dsglkrivwf4tj" path="res://assets/sprites/bullet.png" id="1_0ypiv"]
+[ext_resource type="Script" path="res://assets/scripts/bullet.gd" id="1_ysd8t"]
+[ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="2_6dxqx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bu380"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0ypiv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7e0t"]
+size = Vector2(2, 2)
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_ysd8t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bu380")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_l7e0t")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0.54902, 1)
+energy = 0.2
+texture = ExtResource("2_6dxqx")
+texture_scale = 0.05
