@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bstypynacq07n"]
+[gd_scene load_steps=18 format=3 uid="uid://bstypynacq07n"]
 
 [ext_resource type="Script" path="res://assets/scripts/Room.gd" id="1_mvgv4"]
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_uvaqq"]
@@ -20,6 +20,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 7, -8, 8, -8, 8
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_14dvq"]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dddgu"]
 texture = ExtResource("1_uvaqq")
 0:0/0 = 0
@@ -27,6 +30,7 @@ texture = ExtResource("1_uvaqq")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_d4drh")
 1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_14dvq")
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
