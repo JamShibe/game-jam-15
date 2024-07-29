@@ -15,7 +15,8 @@ const SPEED = 75
 @onready var sprite : AnimatedSprite2D = $enemySprite
 
 var dir : Vector2
-var health : int = 100
+var max_health = 100
+var health : int = max_health
 var damage : int = 0
 
 #Potion Effects:

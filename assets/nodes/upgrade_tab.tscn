@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyau4jwi34ljl"]
+
+[ext_resource type="Script" path="res://assets/scripts/upgrade_tab.gd" id="1_cef7p"]
+[ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="2_25tdo"]
+[ext_resource type="Texture2D" uid="uid://c72n0af4dxi3t" path="res://assets/sprites/arrow.png" id="3_60ysr"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="4_6j4cr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4hgo"]
+size = Vector2(28, 8)
+
+[node name="upgrade_tab" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_cef7p")
+
+[node name="box" type="Sprite2D" parent="."]
+texture = ExtResource("2_25tdo")
+
+[node name="arrow" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_60ysr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 562.0
+offset_bottom = 263.0
+scale = Vector2(0.03, 0.03)
+mouse_filter = 2
+theme = ExtResource("4_6j4cr")
+text = "Double
+health - 100 gold"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_x4hgo")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

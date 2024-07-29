@@ -33,12 +33,9 @@ text = "[center]Choose Your Potions![/center]"
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4.5, 4.5)
 
-[node name="PotionChoose" parent="." instance=ExtResource("4_t5dp2")]
-position = Vector2(-80, -30)
-
 [node name="Potion_choose_button" type="Area2D" parent="." node_paths=PackedStringArray("potions")]
 script = ExtResource("5_nv3ec")
-potions = NodePath("../PotionChoose")
+potions = NodePath("../Potion_list/PotionChoose")
 
 [node name="Sprite2D" type="Sprite2D" parent="Potion_choose_button"]
 position = Vector2(0, 64)
@@ -59,6 +56,11 @@ text = "[center]Continue[/center]"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Potion_choose_button"]
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_wa5g1")
+
+[node name="Potion_list" type="Node2D" parent="."]
+
+[node name="PotionChoose" parent="Potion_list" instance=ExtResource("4_t5dp2")]
+position = Vector2(-80, -30)
 
 [connection signal="input_event" from="Potion_choose_button" to="Potion_choose_button" method="_on_input_event"]
 [connection signal="mouse_entered" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_entered"]

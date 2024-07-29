@@ -12,7 +12,6 @@ func _ready():
 		queue_free()
 	
 func effect():
-	print(get_parent())
 	if "speed_modifier" in get_parent():
 		get_parent().speed_modifier -= 5
 		get_parent().sprite.scale.y = 0.5

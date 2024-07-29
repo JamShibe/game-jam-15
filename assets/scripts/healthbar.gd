@@ -5,12 +5,10 @@ extends AnimatedSprite2D
 var health : int
 var multiplier : float
 
-func _ready():
-	multiplier = parent.health / 100
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if "health" in parent:
+	if "health" in parent and "max_health" in parent:
+		multiplier = parent.max_health / 100
 		var health = parent.health
 		visible = true
 		if health > 90 * multiplier:

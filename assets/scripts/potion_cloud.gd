@@ -5,7 +5,7 @@ extends Area2D
 
 var duration : float = 8
 var cloud_duration : float = 5
-var effects_id : Array = [15]
+var effects_id : Array = []
 var already_affected : Array = []
 
 func _ready():

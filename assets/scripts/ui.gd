@@ -9,7 +9,6 @@ func _ready():
 	sprite.play(type)
 	
 func _process(delta):
-	print(type)
 	sprite.play(type)
 	if player:
 		if type == "Throwable":

@@ -48,6 +48,7 @@ transition = 0
 ease = 2
 
 [node name="4" type="Node2D" node_paths=PackedStringArray("exit")]
+z_index = -10
 script = ExtResource("1_8j0eg")
 exit = NodePath("Gateway2")
 

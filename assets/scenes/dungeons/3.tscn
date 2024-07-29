@@ -48,6 +48,7 @@ transition = 0
 ease = 2
 
 [node name="3" type="Node2D" node_paths=PackedStringArray("exit")]
+z_index = -10
 script = ExtResource("1_mvgv4")
 exit = NodePath("Gateway2")
 

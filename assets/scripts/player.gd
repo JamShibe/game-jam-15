@@ -32,7 +32,8 @@ var current_frame : int
 var current_progress : float
 var sizzle_amount : int = 0
 var started : bool = false
-var health : float = 200
+var max_health : float
+var health : float 
 var damage : float = 20
 var ing_list : Array = []
 var potions_in_use = []
@@ -41,6 +42,10 @@ var potions_in_use = []
 var speed_modifier : float = 0
 var dmg_modifier : float = 0
 var charmed : bool = false
+
+func _ready():
+	max_health = get_parent().get_parent().max_health
+	health = max_health
 
 #_physics_process is run every single frame.
 func _physics_process(delta) -> void:
@@ -185,8 +190,8 @@ func use_potion():
 		find_child("Potion").use()
 		
 func reset():
-	if health > 200:
-		health = 200
+	if health > max_health:
+		health = max_health
 	speed_modifier = 0
 	dmg_modifier = 0
 	if light:
@@ -200,7 +205,6 @@ func reset():
 
 func pickup(name : String):
 	ing_list.append(name)
-	print(ing_list)
 	
 func shoot():
 	if attack_time.is_stopped() and !charmed:
@@ -228,6 +232,8 @@ func check_throw():
 			throw_cooldown.start()
 			if throwable:
 				var projectile = throwable.instantiate()
+				projectile.potions = potions_in_use
+				projectile.set_potions()
 				projectile.position = position
 				get_parent().add_child(projectile)
 				projectile.target = get_global_mouse_position()

@@ -6,6 +6,9 @@ var target : Vector2
 
 @onready var collider : Area2D = $Area2D
 
+var effects_id : Array = []
+var potions : Array
+
 func _physics_process(delta):
 	if target and cloud:
 		velocity = global_position.direction_to(target) * 100
@@ -15,6 +18,7 @@ func _physics_process(delta):
 			var new_cloud = cloud.instantiate()
 			new_cloud.position = position
 			get_parent().add_child(new_cloud)
+			new_cloud.effects_id = effects_id
 			queue_free()
 			
 func _on_area_2d_body_entered(body):
@@ -22,3 +26,11 @@ func _on_area_2d_body_entered(body):
 	new_cloud.position = position
 	get_parent().add_child(new_cloud)
 	queue_free()
+	
+func set_potions():
+	if potions:
+		for potion in potions:
+			var link = "res://assets/nodes/potions/" + str(potion) + ".tscn"
+			var pot = load(link).instantiate()
+			if pot.type == "[Throwable]":
+				effects_id.append(potion)

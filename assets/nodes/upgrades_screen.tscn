@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtj1tbewolah0"]
+[gd_scene load_steps=6 format=3 uid="uid://dtj1tbewolah0"]
 
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_iqb8m"]
 [ext_resource type="Texture2D" uid="uid://bocxhsh3dc0h6" path="res://assets/sprites/text/tempUpgradesText.png" id="2_11uvi"]
+[ext_resource type="PackedScene" uid="uid://dyau4jwi34ljl" path="res://assets/nodes/upgrade_tab.tscn" id="3_iwdd7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m2xig"]
 animations = [{
@@ -33,3 +34,6 @@ sprite_frames = SubResource("SpriteFrames_m2xig")
 [node name="title" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -43)
 sprite_frames = SubResource("SpriteFrames_1ts06")
+
+[node name="upgrade_tab" parent="." instance=ExtResource("3_iwdd7")]
+position = Vector2(-50, -15)

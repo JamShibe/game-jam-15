@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var ing_list : Array = ["Cave Moss", "Dock Leaf"]
-var pot_list : Array = [9, 11]
+var ing_list : Array = []
+var pot_list : Array = []
 
 func get_ingredients():
 	var ing_array = [0,0,0,0,0,0]

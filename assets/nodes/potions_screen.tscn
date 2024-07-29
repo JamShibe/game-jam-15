@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://btkr2puubuw3b"]
+[gd_scene load_steps=11 format=3 uid="uid://btkr2puubuw3b"]
 
 [ext_resource type="Script" path="res://assets/scripts/potions_screen.gd" id="1_b8a61"]
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_yey6s"]
 [ext_resource type="Texture2D" uid="uid://dsfvxhymife8f" path="res://assets/sprites/text/potionsText.png" id="2_d5bky"]
 [ext_resource type="PackedScene" uid="uid://bxjb03cywd4o" path="res://assets/nodes/potion_inventory.tscn" id="3_8va5b"]
+[ext_resource type="PackedScene" uid="uid://dw55xl8ictcsy" path="res://assets/nodes/potion_tab_choose.tscn" id="5_feod8"]
+[ext_resource type="Script" path="res://assets/scripts/Potion_choose_button.gd" id="6_tn3d4"]
+[ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="7_tps0g"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="8_vjpx0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jwly"]
 animations = [{
@@ -15,6 +19,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kljpc"]
+size = Vector2(48, 16)
 
 [node name="potions_screen" type="Node2D"]
 script = ExtResource("1_b8a61")
@@ -28,3 +35,37 @@ texture = ExtResource("2_d5bky")
 
 [node name="PotionInventory" parent="." instance=ExtResource("3_8va5b")]
 position = Vector2(-80, -30)
+potion_tab = ExtResource("5_feod8")
+is_shop = true
+
+[node name="Potion_choose_button" type="Area2D" parent="." node_paths=PackedStringArray("potions")]
+position = Vector2(0, 11)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("6_tn3d4")
+is_sell = true
+potions = NodePath("../PotionInventory")
+
+[node name="Sprite2D" type="Sprite2D" parent="Potion_choose_button"]
+position = Vector2(0, 64)
+scale = Vector2(1.85, 1.85)
+texture = ExtResource("7_tps0g")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Potion_choose_button"]
+offset_left = -24.0
+offset_top = 60.0
+offset_right = 456.0
+offset_bottom = 140.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme = ExtResource("8_vjpx0")
+bbcode_enabled = true
+text = "[center]Sell[/center]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Potion_choose_button"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_kljpc")
+
+[connection signal="input_event" from="Potion_choose_button" to="Potion_choose_button" method="_on_input_event"]
+[connection signal="mouse_entered" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="Potion_choose_button" to="Potion_choose_button" method="_on_mouse_shape_entered"]
