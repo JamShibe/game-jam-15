@@ -118,7 +118,7 @@ func move_player() -> void:
 		sprite.set_frame_and_progress(current_frame, current_progress)
 		#Normalizes input_vector to equal one, then multiplies it by the speed and sets the velocity
 		input_vector = input_vector.normalized()
-		velocity = input_vector * speed
+		velocity = input_vector * (speed + speed_modifier)
 	#If the player is not moving:
 	else:
 		#Set the velocity to Zero, Stop the animation and set the frame to be standing

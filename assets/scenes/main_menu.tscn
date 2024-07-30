@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://38yhk30fvalc"]
+
+[ext_resource type="Script" path="res://assets/scenes/main_menu.gd" id="1_rft1m"]
+[ext_resource type="Texture2D" uid="uid://ch2qjinks8amr" path="res://assets/sprites/tempButtonLong.png" id="1_w2hr1"]
+[ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="2_2xdgf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xttqu"]
+size = Vector2(272, 160)
+
+[node name="Main Menu" type="Node2D"]
+z_index = -10
+script = ExtResource("1_rft1m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(2, 2)
+texture = ExtResource("1_w2hr1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -28.0
+offset_top = -4.0
+offset_right = 672.0
+offset_bottom = 96.0
+scale = Vector2(0.08, 0.08)
+mouse_filter = 2
+theme = ExtResource("2_2xdgf")
+bbcode_enabled = true
+text = "[center]Rogue Potion[/center]"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -40.0
+offset_top = 32.0
+offset_right = 960.0
+offset_bottom = 232.0
+scale = Vector2(0.08, 0.08)
+mouse_filter = 2
+theme = ExtResource("2_2xdgf")
+bbcode_enabled = true
+text = "[center]Click Anywhere to start[/center]"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_xttqu")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

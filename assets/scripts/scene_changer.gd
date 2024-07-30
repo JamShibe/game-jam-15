@@ -10,7 +10,7 @@ var health : int
 var potion_inventory : Array = [5,9,11,13]
 var potions_in_use : Array = []
 var max_health : float = 100
-var coins : int = 0
+var coins : int = 100
 var drink_cooldown : int = 20
 var throw_cooldown : int= 15
 
@@ -20,7 +20,7 @@ var throw_cooldown : int= 15
 @onready var anim : AnimationPlayer = $AnimationPlayer
 
 func _ready():
-	load_tutorial()
+	load_menu()
 
 func next_room():
 	if !changing_level:
@@ -127,8 +127,24 @@ func load_tutorial():
 	if !changing_level:
 		changing_level = true
 		trans.play()
+		if current_level:
+			await get_tree().create_timer(1).timeout
+			current_level.queue_free()
 		await get_tree().create_timer(1).timeout
 		link = "res://assets/scenes/tutorial.tscn"
+		await get_tree().create_timer(1).timeout
+		var next_room = load(link).instantiate()
+		add_child(next_room)
+		current_level = next_room
+		trans.play_back()
+		changing_level = false
+		
+func load_menu():
+	if !changing_level:
+		changing_level = true
+		trans.play()
+		await get_tree().create_timer(1).timeout
+		link = "res://assets/scenes/main_menu.tscn"
 		await get_tree().create_timer(1).timeout
 		var next_room = load(link).instantiate()
 		add_child(next_room)

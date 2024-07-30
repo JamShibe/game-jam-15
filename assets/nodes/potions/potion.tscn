@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cudo0kdaavx3k"]
+[gd_scene load_steps=3 format=3 uid="uid://cudo0kdaavx3k"]
 
 [ext_resource type="Script" path="res://assets/scripts/potion.gd" id="1_1ywpi"]
+[ext_resource type="AudioStream" uid="uid://3vrqjumhtsfo" path="res://assets/sounds/drink.mp3" id="2_w1t7e"]
 
 [node name="Potion" type="Node"]
 script = ExtResource("1_1ywpi")
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w1t7e")
+volume_db = -15.0
