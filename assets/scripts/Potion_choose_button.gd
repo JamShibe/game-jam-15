@@ -4,6 +4,7 @@ extends Area2D
 @export var potions : Node2D
 
 @onready var text : RichTextLabel = $RichTextLabel
+@onready var sound : AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _on_mouse_entered():
@@ -25,5 +26,7 @@ func _on_input_event(viewport, event, shape_idx):
 				var pot = load(link).instantiate()
 				value += pot.value
 			get_parent().get_parent().get_parent().coins += value
+			if (sound.get_playback_position() > 1 or !sound.playing)and value > 0:
+				sound.play()
 		potions.reset()
 				

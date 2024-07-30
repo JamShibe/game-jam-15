@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvkwpb1axjioy"]
+[gd_scene load_steps=14 format=3 uid="uid://dvkwpb1axjioy"]
 
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_5814g"]
 [ext_resource type="Texture2D" uid="uid://cej4npa787rpu" path="res://assets/sprites/text/tempWorkbenchText.png" id="2_a04qg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://assets/scripts/Button_Potion.gd" id="7_kkh07"]
 [ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="8_l00gu"]
 [ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="9_kigik"]
+[ext_resource type="AudioStream" uid="uid://c05veced476gb" path="res://assets/sounds/potion_make.mp3" id="10_pt501"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cg4l6"]
 animations = [{
@@ -85,6 +86,10 @@ text = "[center]Make[/center]"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button2"]
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_3x306")
+
+[node name="potion_make" type="AudioStreamPlayer" parent="Button2"]
+stream = ExtResource("10_pt501")
+volume_db = -20.0
 
 [connection signal="input_event" from="Button2" to="Button2" method="_on_input_event"]
 [connection signal="mouse_entered" from="Button2" to="Button2" method="_on_mouse_entered"]

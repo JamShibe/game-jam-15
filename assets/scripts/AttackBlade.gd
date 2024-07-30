@@ -3,8 +3,12 @@ extends CharacterBody2D
 @export var ghost_node : PackedScene
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var sound : AudioStreamPlayer = $sound
 
 var damage : float = 20
+
+func _ready():
+	sound.play()
 
 func _physics_process(delta):
 	move_and_slide()

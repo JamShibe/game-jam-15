@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdpraivtofbnx"]
+[gd_scene load_steps=19 format=3 uid="uid://bdpraivtofbnx"]
 
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_7trf7"]
 [ext_resource type="Script" path="res://assets/scripts/Room.gd" id="1_8j0eg"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://jury3vwrgflo" path="res://assets/nodes/two_way_light.tscn" id="10_twbtw"]
 [ext_resource type="PackedScene" uid="uid://yc08qoa3su51" path="res://assets/nodes/rotating.tscn" id="11_1llre"]
 [ext_resource type="PackedScene" uid="uid://dyej7oden0p3r" path="res://assets/nodes/light_area.tscn" id="12_nmd4k"]
+[ext_resource type="PackedScene" uid="uid://f5mlcnyjfmou" path="res://assets/nodes/ranged_enemy.tscn" id="13_ueyhg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d4drh"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 7, -8, 8, -8)
@@ -138,4 +139,8 @@ position = Vector2(304, -224)
 
 [node name="basic_enemy6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_m2s4x")]
 position = Vector2(232, -688)
+player = NodePath("../player")
+
+[node name="ranged_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_ueyhg")]
+position = Vector2(-327, -686)
 player = NodePath("../player")

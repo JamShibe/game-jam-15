@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bg2q80ghak78b"]
+[gd_scene load_steps=20 format=3 uid="uid://bg2q80ghak78b"]
 
 [ext_resource type="Script" path="res://assets/scripts/Room.gd" id="1_4grst"]
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_o2jj1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b3m6qxxnywd82" path="res://assets/nodes/Gateway.tscn" id="10_psrv3"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_fnbkw"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_b6qeo"]
+[ext_resource type="PackedScene" uid="uid://f5mlcnyjfmou" path="res://assets/nodes/ranged_enemy.tscn" id="13_lugns"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3xlh0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -211,3 +212,7 @@ follow_damping_value = Vector2(0.05, 0.05)
 draw_limits = true
 limit_top = -760
 limit_bottom = 380
+
+[node name="ranged_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_lugns")]
+position = Vector2(-208, -457)
+player = NodePath("../player")

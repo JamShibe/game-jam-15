@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bstypynacq07n"]
+[gd_scene load_steps=19 format=3 uid="uid://bstypynacq07n"]
 
 [ext_resource type="Script" path="res://assets/scripts/Room.gd" id="1_mvgv4"]
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_uvaqq"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://yc08qoa3su51" path="res://assets/nodes/rotating.tscn" id="9_xuqyc"]
 [ext_resource type="PackedScene" uid="uid://dyej7oden0p3r" path="res://assets/nodes/light_area.tscn" id="10_4c320"]
 [ext_resource type="PackedScene" uid="uid://14rrfo0mck6y" path="res://assets/nodes/ingredient.tscn" id="11_irjim"]
+[ext_resource type="PackedScene" uid="uid://f5mlcnyjfmou" path="res://assets/nodes/ranged_enemy.tscn" id="13_puwdk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d4drh"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 7, -8, 8, -8)
@@ -160,3 +161,7 @@ player = NodePath("../player")
 
 [node name="Ingredient5" parent="." instance=ExtResource("11_irjim")]
 position = Vector2(-1408, 264)
+
+[node name="ranged_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_puwdk")]
+position = Vector2(-1410, -57)
+player = NodePath("../player")

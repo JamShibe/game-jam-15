@@ -21,13 +21,18 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		if chosen:
 			chosen = false
 		else:
-			chosen = true
-			text.modulate = Color(0,1,0)
+			var checked_potions = get_parent().get_parent().get_parent().check_chosen()
+			if !potion_id in checked_potions or is_shop:
+				chosen = true
+				text.modulate = Color(0,1,0)
 
 
 func _on_area_2d_mouse_entered():
 	if !chosen:
 		text.modulate = Color(1,1,0)
+	var checked_potions = get_parent().get_parent().get_parent().check_chosen()
+	if potion_id in checked_potions and !chosen:
+		text.modulate = Color(1,0,0)
 
 func _on_area_2d_mouse_exited():
 	if !chosen:

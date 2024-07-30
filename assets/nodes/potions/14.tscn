@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://buq24i4gjqndf"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_effects/14.gd" id="1_1fhhi"]
+[ext_resource type="PackedScene" uid="uid://daengeauu6gnw" path="res://assets/nodes/poison.tscn" id="2_kqqri"]
+
+[node name="14" type="Node"]
+script = ExtResource("1_1fhhi")
+poison = ExtResource("2_kqqri")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

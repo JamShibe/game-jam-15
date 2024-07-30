@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://daengeauu6gnw"]
+
+[ext_resource type="Texture2D" uid="uid://c2p6drjw1b7vq" path="res://assets/sprites/light.png" id="1_0h8e0"]
+
+[sub_resource type="Gradient" id="Gradient_jp1ge"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 0.34902, 0, 1)
+
+[node name="Poison" type="CPUParticles2D"]
+z_index = 10
+amount = 4
+emission_shape = 1
+emission_sphere_radius = 3.59
+spread = 180.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 5.0
+initial_velocity_max = 8.0
+angular_velocity_min = -407.27
+angular_velocity_max = 247.27
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_jp1ge")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 0.75, 0, 1)
+energy = 0.4
+shadow_enabled = true
+texture = ExtResource("1_0h8e0")
+texture_scale = 0.2

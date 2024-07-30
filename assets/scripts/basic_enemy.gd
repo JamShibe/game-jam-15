@@ -13,6 +13,7 @@ const SPEED = 75
 @onready var attack_cool : Timer = $attackCooldown
 @onready var ghost_timer : Timer = $ghostTimer
 @onready var sprite : AnimatedSprite2D = $enemySprite
+@onready var hit_sound : AudioStreamPlayer = $hit_sound
 
 var dir : Vector2
 var max_health = 100
@@ -106,6 +107,7 @@ func _on_flash_timer_timeout():
 	dir = global_position.direction_to(player.position)
 	ghost_timer.start()
 	attack_timer.start()
+	hit_sound.play()
 	damage = 20 + dmg_modifier
 
 func _on_attack_timer_timeout():
@@ -122,8 +124,8 @@ func _on_ghost_timer_timeout():
 	get_tree().current_scene.add_child(ghost)
 
 func reset():
-	if health > 100:
-		health = 100
+	if health > max_health:
+		health = max_health
 	speed_modifier = 0
 	dmg_modifier = 0
 	sprite.scale.y = 1

@@ -46,6 +46,8 @@ var charmed : bool = false
 func _ready():
 	max_health = get_parent().get_parent().max_health
 	health = max_health
+	drink_cooldown.wait_time = get_parent().get_parent().drink_cooldown
+	throw_cooldown.wait_time = get_parent().get_parent().drink_cooldown
 
 #_physics_process is run every single frame.
 func _physics_process(delta) -> void:

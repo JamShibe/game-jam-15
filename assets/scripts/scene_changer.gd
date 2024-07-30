@@ -4,18 +4,23 @@ var number_of_rooms : int = 4
 var link : String
 var current_level
 var changing_level : bool = false
-var ingredients : Array = []
+var ingredients : Array = ["Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang","Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang"]
 var shop_ingredients : Array
 var health : int
-var potion_inventory : Array = [9, 11,9,9,9,9,9,9,9,9,9,9,9]
+var potion_inventory : Array = [5,9,11,13]
 var potions_in_use : Array = []
 var max_health : float = 100
 var coins : int = 0
+var drink_cooldown : int = 20
+var throw_cooldown : int= 15
 
 @onready var trans : ColorRect = $SceneTransition
+@onready var dungeon_music : AudioStreamPlayer = $dungeon_music
+@onready var shop_music : AudioStreamPlayer = $shop_music
+@onready var anim : AnimationPlayer = $AnimationPlayer
 
 func _ready():
-	shop()
+	load_tutorial()
 
 func next_room():
 	if !changing_level:
@@ -65,6 +70,8 @@ func death():
 		add_child(next_room)
 		current_level = next_room
 		trans.play_back()
+		if dungeon_music.playing:
+			dungeon_music.stop()
 		changing_level = false
 	
 func shop():
@@ -86,6 +93,8 @@ func shop():
 			new_player.ing_list = shop_ingredients + ingredients
 		add_child(next_room)
 		current_level = next_room
+		shop_music.play()
+		anim.play("fade_dungeon")
 		trans.play_back()
 		changing_level = false
 	
@@ -110,8 +119,22 @@ func choose_screen():
 		add_child(next_room)
 		current_level = next_room
 		trans.play_back()
+		dungeon_music.play()
+		anim.play("shop_fade")
 		changing_level = false
-	
+		
+func load_tutorial():
+	if !changing_level:
+		changing_level = true
+		trans.play()
+		await get_tree().create_timer(1).timeout
+		link = "res://assets/scenes/tutorial.tscn"
+		await get_tree().create_timer(1).timeout
+		var next_room = load(link).instantiate()
+		add_child(next_room)
+		current_level = next_room
+		trans.play_back()
+		changing_level = false
 	
 #INFO
 #Make shop go to potion choosing - DONE

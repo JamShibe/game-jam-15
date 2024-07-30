@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var sound : AudioStreamPlayer = $sound
 
 var poss_ing : Array = ["Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang"]
 var ing_name : String = ""
@@ -13,4 +14,7 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "player":
 		body.pickup(ing_name)
+		visible = false
+		sound.play()
+		await get_tree().create_timer(1).timeout
 		queue_free()

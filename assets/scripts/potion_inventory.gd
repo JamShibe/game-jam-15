@@ -18,6 +18,11 @@ func reset():
 		potions = get_parent().get_parent().get_parent().potion_inventory
 	for potion in potions:
 		count += 1;
+		var new_potion = load("res://assets/nodes/potions/" + str(potion) + ".tscn").instantiate()
+		if new_potion.type == "[Home Use]" and !is_shop:
+			count -=1;
+			new_potion.queue_free()
+			continue
 		var new_tab = potion_tab.instantiate()
 		new_tab.is_shop = is_shop
 		new_tab.potion_id = potion
@@ -31,12 +36,19 @@ func reset():
 		
 func get_chosen():
 	var chosen_potions : Array = []
-	var count : int = 0
 	for child in control.get_children():
 		if "chosen" in child:
 			if child.chosen == true:
 				chosen_potions.append(child.potion_id)
 				get_parent().get_parent().get_parent().potion_inventory.remove_at(get_parent().get_parent().get_parent().potion_inventory.find(child.potion_id))
-		count += 1;
+		
+	return chosen_potions
+
+func check_chosen():
+	var chosen_potions : Array = []
+	for child in control.get_children():
+		if "chosen" in child:
+			if child.chosen == true:
+				chosen_potions.append(child.potion_id)
 		
 	return chosen_potions

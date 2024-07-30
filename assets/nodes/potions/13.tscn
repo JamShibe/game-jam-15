@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dejdbo8feispk"]
+
+[ext_resource type="Script" path="res://assets/scripts/potion_effects/13.gd" id="1_rbfet"]
+
+[node name="13" type="Node"]
+script = ExtResource("1_rbfet")

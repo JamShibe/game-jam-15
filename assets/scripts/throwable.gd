@@ -25,6 +25,7 @@ func _on_area_2d_body_entered(body):
 	var new_cloud = cloud.instantiate()
 	new_cloud.position = position
 	get_parent().add_child(new_cloud)
+	new_cloud.effects_id = effects_id
 	queue_free()
 	
 func set_potions():

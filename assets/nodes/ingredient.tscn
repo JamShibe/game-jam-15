@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://14rrfo0mck6y"]
+[gd_scene load_steps=16 format=3 uid="uid://14rrfo0mck6y"]
 
 [ext_resource type="Texture2D" uid="uid://bojdcpy4uihyc" path="res://assets/sprites/temp_moss.png" id="1_dcxwk"]
 [ext_resource type="Script" path="res://assets/scripts/ingredient.gd" id="1_rblxc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dpvtgnrq68uuw" path="res://assets/sprites/magicIce1.png" id="9_4b7e6"]
 [ext_resource type="Texture2D" uid="uid://ph4iyoiteowt" path="res://assets/sprites/magicIce2.png" id="10_505tr"]
 [ext_resource type="Texture2D" uid="uid://bbic8bslbawu4" path="res://assets/sprites/magicIce3.png" id="11_6xnyg"]
+[ext_resource type="AudioStream" uid="uid://lhw6oc1voaif" path="res://assets/sounds/pickup.mp3" id="13_hrk4n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgjan"]
 
@@ -94,5 +95,10 @@ animation = &"Giant Spider Fang"
 energy = 0.1
 texture = ExtResource("8_kx53b")
 texture_scale = 0.1
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_hrk4n")
+volume_db = -20.0
+pitch_scale = 1.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

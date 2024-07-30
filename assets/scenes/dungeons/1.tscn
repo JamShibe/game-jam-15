@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfohs3ac6rqrc"]
+[gd_scene load_steps=19 format=3 uid="uid://dfohs3ac6rqrc"]
 
 [ext_resource type="Texture2D" uid="uid://dwrx3h84fugth" path="res://assets/sprites/tilemaps/tempWorldTilemap.png" id="1_mdiqu"]
 [ext_resource type="Script" path="res://assets/scripts/Room.gd" id="1_up6wa"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_s645f"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_uas6x"]
 [ext_resource type="PackedScene" uid="uid://bg6ugbecb6cwm" path="res://assets/nodes/camera_2d.tscn" id="10_mvpys"]
+[ext_resource type="PackedScene" uid="uid://f5mlcnyjfmou" path="res://assets/nodes/ranged_enemy.tscn" id="13_3q34s"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3xlh0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -155,3 +156,11 @@ tween_resource = SubResource("Resource_73m8e")
 draw_limits = true
 limit_left = -480
 limit_top = -512
+
+[node name="ranged_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_3q34s")]
+position = Vector2(34, -109)
+player = NodePath("../player")
+
+[node name="ranged_enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_3q34s")]
+position = Vector2(-387, -289)
+player = NodePath("../player")

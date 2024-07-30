@@ -35,10 +35,13 @@ position = Vector2(30, 18)
 position = Vector2(0, 33)
 
 [node name="point5" parent="." instance=ExtResource("2_pvv2o")]
+modulate = Color(1, 0, 0, 1)
 position = Vector2(-30, 18)
+script = null
 
 [node name="point6" parent="." instance=ExtResource("2_pvv2o")]
 position = Vector2(-30, -18)
+script = null
 
 [node name="magic_circle_line" parent="." node_paths=PackedStringArray("point1", "point2") instance=ExtResource("3_dy0rt")]
 position = Vector2(-30, 18)

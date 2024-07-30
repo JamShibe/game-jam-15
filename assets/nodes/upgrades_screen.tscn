@@ -37,3 +37,15 @@ sprite_frames = SubResource("SpriteFrames_1ts06")
 
 [node name="upgrade_tab" parent="." instance=ExtResource("3_iwdd7")]
 position = Vector2(-50, -15)
+
+[node name="upgrade_tab2" parent="." instance=ExtResource("3_iwdd7")]
+position = Vector2(50, -15)
+num = 1
+
+[node name="upgrade_tab3" parent="." instance=ExtResource("3_iwdd7")]
+position = Vector2(50, 15)
+num = 3
+
+[node name="upgrade_tab4" parent="." instance=ExtResource("3_iwdd7")]
+position = Vector2(-50, 15)
+num = 2

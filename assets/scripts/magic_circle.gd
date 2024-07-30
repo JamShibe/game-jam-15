@@ -6,8 +6,8 @@ extends Node2D
 @onready var point2 : Area2D = $point2
 @onready var point3 : Area2D = $point3
 @onready var point4 : Area2D = $point4
-@onready var point5 : Area2D = $point5
-@onready var point6 : Area2D = $point6
+#@onready var point5 : Area2D = $point5
+#@onready var point6 : Area2D = $point6
 
 var potion_id : int 
 
@@ -21,10 +21,24 @@ func _process(delta):
 		potion_id += 4
 	if point4.is_clicked:
 		potion_id += 8
-	if point5.is_clicked:
-		potion_id += 16
-	if point6.is_clicked:
-		potion_id += 32
+	#if point5.is_clicked:
+		#potion_id += 16
+	#if point6.is_clicked:
+		#potion_id += 32
 	
 	if recipe_list:
 		recipe_list.potion_id = potion_id
+		
+func reset():
+	point1.sprite.visible = false
+	point1.is_clicked = false
+	point2.sprite.visible = false
+	point2.is_clicked = false
+	point3.sprite.visible = false
+	point3.is_clicked = false
+	point4.sprite.visible = false
+	point4.is_clicked = false
+	#point5.sprite.visible = false
+	#point5.is_clicked = false
+	#point6.sprite.visible = false
+	#point6.is_clicked = false
