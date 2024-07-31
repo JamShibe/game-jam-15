@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxg7spxwsygue"]
+[gd_scene load_steps=7 format=3 uid="uid://dxg7spxwsygue"]
 
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_lu2jd"]
+[ext_resource type="Script" path="res://assets/scripts/ingredients_screen.gd" id="1_o71wr"]
 [ext_resource type="Texture2D" uid="uid://33yqaer05pi1" path="res://assets/sprites/text/tempIngredientsText.png" id="2_ql83a"]
 [ext_resource type="PackedScene" uid="uid://b16vgolyoglm4" path="res://assets/nodes/ingredient_counter.tscn" id="3_nsouy"]
 
@@ -27,6 +28,7 @@ animations = [{
 }]
 
 [node name="ingredients_screen" type="Node2D"]
+script = ExtResource("1_o71wr")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tnyak")

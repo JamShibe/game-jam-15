@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var ing_list : Array = []
+var ing_list : Array = ["Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang","Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang"]
 var pot_list : Array = []
 
 func get_ingredients():
@@ -35,4 +35,3 @@ func set_ingredients(ing_array : Array):
 	for count in ing_array[5]:
 		new_list.append("Giant Spider Fang")
 	ing_list = new_list
-	get_parent().get_parent().ingredients = ing_list

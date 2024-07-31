@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://38yhk30fvalc"]
+[gd_scene load_steps=8 format=3 uid="uid://38yhk30fvalc"]
 
 [ext_resource type="Script" path="res://assets/scenes/main_menu.gd" id="1_rft1m"]
 [ext_resource type="Texture2D" uid="uid://ch2qjinks8amr" path="res://assets/sprites/tempButtonLong.png" id="1_w2hr1"]
@@ -6,6 +6,44 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xttqu"]
 size = Vector2(272, 160)
+
+[sub_resource type="Animation" id="Animation_ex113"]
+resource_name = "bop"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 32), Vector2(-40, 36), Vector2(-40, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_bfqqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7trnx"]
+_data = {
+"RESET": SubResource("Animation_bfqqi"),
+"bop": SubResource("Animation_ex113")
+}
 
 [node name="Main Menu" type="Node2D"]
 z_index = -10
@@ -45,5 +83,11 @@ text = "[center]Click Anywhere to start[/center]"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xttqu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7trnx")
+}
+autoplay = "bop"
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

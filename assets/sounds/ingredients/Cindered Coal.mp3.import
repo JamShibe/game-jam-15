@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cry1eu4ii58nj"
+path="res://.godot/imported/Cindered Coal.mp3-fb60760912caf206b943a026157bbd32.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ingredients/Cindered Coal.mp3"
+dest_files=["res://.godot/imported/Cindered Coal.mp3-fb60760912caf206b943a026157bbd32.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

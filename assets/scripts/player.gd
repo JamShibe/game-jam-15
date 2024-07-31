@@ -21,6 +21,8 @@ extends CharacterBody2D
 @onready var aim : RayCast2D = $throwingAim
 @onready var aim_line : Line2D = $aimLine
 @onready var camera : PhantomCamera2D = get_parent().find_child("PhantomCamera2D")
+@onready var hurt_sound : AudioStreamPlayer = $hurt
+@onready var dash_sound : AudioStreamPlayer = $dash
 
 #Defines Original Speed constant. Speed variable will be changed via dashing and then set back to original speed
 const ORIG_SPEED = 100
@@ -134,6 +136,7 @@ func dash() -> void:
 	if dash_cooldown.is_stopped():
 		#Triple the speed while dashing
 		speed = (ORIG_SPEED + speed_modifier) * 3
+		dash_sound.play()
 		#Start all duration/cooldown timers
 		ghost_cooldown.start()
 		dash_duration.start();
@@ -161,11 +164,11 @@ func sizzle(is_sizzling : bool) -> void:
 	elif sizzle_amount > 0:
 		sizzle_amount -= 1
 		speed = ORIG_SPEED + speed_modifier
-	if sizzle_amount < 1 and dash_cooldown.is_stopped():
+	if sizzle_amount < 1 and dash_duration.is_stopped():
 		modulate = Color(1, 1, 1)
 		speed = ORIG_SPEED + speed_modifier
-	elif sizzle_amount > 5 and dash_cooldown.is_stopped():
-		speed = (ORIG_SPEED + speed_modifier) / 3
+	elif sizzle_amount > 5 and dash_duration.is_stopped():
+		speed = (ORIG_SPEED + speed_modifier) / 4
 	if sizzle_amount > 50 and sizzle_time.is_stopped():
 		sizzle_time.start()
 		modulate = Color(1, 1, 0)
@@ -182,8 +185,16 @@ func _on_hitbox_body_entered(body):
 		if body.damage > 0:
 			health -= body.damage
 			sprite.modulate = Color(1,0,0)
+			hurt_sound.play()
 			invun_time.start()
-		
+			
+func shot():
+		if invun_time.is_stopped():
+			sprite.modulate = Color(1,0,0)
+			hurt_sound.play()
+			health -= 10
+			invun_time.start()
+			
 func _on_invun_timer_timeout():
 	sprite.modulate = Color(1,1,1)
 	
@@ -197,7 +208,7 @@ func reset():
 	speed_modifier = 0
 	dmg_modifier = 0
 	if light:
-		light.texture_scale = 0.4
+		light.texture_scale = 0.3
 	if camera:
 		camera.zoom = Vector2(5 , 5)
 	sprite.scale.y = 1

@@ -5,6 +5,7 @@ extends Area2D
 @export var recipe : Node2D
 @export var potion_list : Node2D
 @export var magic_circle : Node2D
+@export var ingredient_screen : Node2D
 
 @onready var text : RichTextLabel = $RichTextLabel
 @onready var sound : AudioStreamPlayer = $potion_make
@@ -54,8 +55,10 @@ func _on_input_event(viewport, event, shape_idx):
 			check_recipe()
 			player.set_ingredients(player_ing)
 			get_parent().get_parent().get_parent().potion_inventory.append(recipe.potion_id)
+		
 			potion_list.update_list()
 			sound.play()
 			magic_circle.reset()
+			ingredient_screen.reset()
 			
 		

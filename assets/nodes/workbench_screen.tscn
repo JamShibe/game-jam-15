@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://assets/scripts/Button_Potion.gd" id="7_kkh07"]
 [ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="8_l00gu"]
 [ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="9_kigik"]
-[ext_resource type="AudioStream" uid="uid://c05veced476gb" path="res://assets/sounds/potion_make.mp3" id="10_pt501"]
+[ext_resource type="AudioStream" uid="uid://c8f37rm1okxcn" path="res://assets/sounds/brew.mp3" id="10_fhnlw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cg4l6"]
 animations = [{
@@ -88,7 +88,7 @@ position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_3x306")
 
 [node name="potion_make" type="AudioStreamPlayer" parent="Button2"]
-stream = ExtResource("10_pt501")
+stream = ExtResource("10_fhnlw")
 volume_db = -20.0
 
 [connection signal="input_event" from="Button2" to="Button2" method="_on_input_event"]

@@ -8,7 +8,8 @@ var multiplier : float
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if "health" in parent and "max_health" in parent:
-		multiplier = parent.max_health / 100
+		multiplier = float(parent.max_health) / 100
+		print(parent.name + " - " + str(multiplier))
 		var health = parent.health
 		visible = true
 		if health > 90 * multiplier:

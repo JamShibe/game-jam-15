@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1m3n1phsebgd"]
+[gd_scene load_steps=8 format=3 uid="uid://d1m3n1phsebgd"]
 
 [ext_resource type="Texture2D" uid="uid://bcjpq02erb8br" path="res://assets/sprites/tempBackground.png" id="1_d6m62"]
 [ext_resource type="Theme" uid="uid://dqeubdqhinxcb" path="res://assets/themes/recipe_text.tres" id="2_qqdxw"]
 [ext_resource type="Script" path="res://assets/scripts/Button.gd" id="3_fgk3u"]
 [ext_resource type="Texture2D" uid="uid://c2jrkokpbwm2n" path="res://assets/sprites/tempButton.png" id="4_cydju"]
+[ext_resource type="PackedScene" uid="uid://bsi1k5ro56vcp" path="res://assets/nodes/player_shop.tscn" id="5_vasf5"]
+[ext_resource type="Script" path="res://assets/scripts/player_shop_tutorial.gd" id="6_vv15e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckfec"]
 size = Vector2(48, 16)
@@ -74,6 +76,10 @@ text = "[center]Continue[/center]"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button"]
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_ckfec")
+
+[node name="player_shop" parent="." instance=ExtResource("5_vasf5")]
+position = Vector2(-72, -64)
+script = ExtResource("6_vv15e")
 
 [connection signal="input_event" from="Button" to="Button" method="_on_input_event"]
 [connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]

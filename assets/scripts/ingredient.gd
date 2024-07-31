@@ -10,6 +10,7 @@ var ing_name : String = ""
 func _ready():
 	ing_name = poss_ing.pick_random()
 	sprite.play(ing_name)
+	sound.stream = load("res://assets/sounds/ingredients/" + ing_name + ".mp3")
 
 func _on_body_entered(body):
 	if body.name == "player":

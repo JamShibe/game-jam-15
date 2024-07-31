@@ -32,6 +32,10 @@ func _physics_process(delta: float) -> void:
 			child.effect()
 	
 	if health <= 0:
+		if (randi() % 101) > 60:
+			var new_ingredient = load("res://assets/nodes/ingredient.tscn")
+			new_ingredient.position = position
+			get_parent().add_child(new_ingredient)
 		queue_free()
 	if "position" in player:
 			raycast.target_position = player.position - global_position

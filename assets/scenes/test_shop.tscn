@@ -68,10 +68,11 @@ draw_limits = true
 
 [node name="workbench_screen" parent="." instance=ExtResource("1_0p51f")]
 
-[node name="Button2" parent="workbench_screen" index="6" node_paths=PackedStringArray("player", "potion_list", "magic_circle")]
+[node name="Button2" parent="workbench_screen" index="6" node_paths=PackedStringArray("player", "potion_list", "magic_circle", "ingredient_screen")]
 player = NodePath("../../player_shop")
 potion_list = NodePath("../../potions_screen")
 magic_circle = NodePath("../magic_circle")
+ingredient_screen = NodePath("../../ingredients_screen")
 
 [node name="UpgradesCam" type="Node2D" parent="."]
 position = Vector2(-275, 0)

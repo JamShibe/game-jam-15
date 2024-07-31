@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dv6fcldiygqo5"]
+[gd_scene load_steps=47 format=3 uid="uid://dv6fcldiygqo5"]
 
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_58cn2"]
 [ext_resource type="PackedScene" uid="uid://dpafmudyt5c8h" path="res://assets/nodes/ghost.tscn" id="2_x44bf"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b5q6xfer8bb3q" path="res://assets/sprites/spritesheets/ghost_cat_sprite.png" id="6_tgxfa"]
 [ext_resource type="PackedScene" uid="uid://cudo0kdaavx3k" path="res://assets/nodes/potions/potion.tscn" id="7_mkp1j"]
 [ext_resource type="PackedScene" uid="uid://s13rboi7lxgo" path="res://assets/nodes/aim_line.tscn" id="8_v1jcn"]
+[ext_resource type="AudioStream" uid="uid://ccheryg8xc6re" path="res://assets/sounds/damage.mp3" id="10_ytb46"]
+[ext_resource type="AudioStream" uid="uid://cnm57pkp0t5bn" path="res://assets/sounds/dash.mp3" id="11_27pxw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqsqb"]
 atlas = ExtResource("6_tgxfa")
@@ -345,7 +347,7 @@ color = Color(0.568627, 0.831373, 0.85098, 1)
 energy = 0.2
 shadow_enabled = true
 texture = ExtResource("4_rv71t")
-texture_scale = 0.4
+texture_scale = 0.3
 
 [node name="AttackCentre" type="Node2D" parent="."]
 rotation = 1.5708
@@ -360,6 +362,15 @@ collision_mask = 5
 
 [node name="aimLine" parent="." instance=ExtResource("8_v1jcn")]
 width = 1.0
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ytb46")
+volume_db = -20.0
+max_polyphony = 2
+
+[node name="dash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_27pxw")
+volume_db = -20.0
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="dashDuration" to="." method="_on_dash_duration_timeout"]

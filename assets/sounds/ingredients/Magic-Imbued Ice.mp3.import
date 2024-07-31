@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bn1lisoga3i2w"
+path="res://.godot/imported/Magic-Imbued Ice.mp3-85e8dd34c1a09411dbf2cc2c464a4a44.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ingredients/Magic-Imbued Ice.mp3"
+dest_files=["res://.godot/imported/Magic-Imbued Ice.mp3-85e8dd34c1a09411dbf2cc2c464a4a44.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

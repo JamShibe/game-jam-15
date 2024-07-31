@@ -41,5 +41,5 @@ func _on_ghost_time_timeout():
 
 func _on_area_2d_body_entered(body):
 	if body.name == "player":
-		body.health -= 10
+		body.shot()
 		queue_free()

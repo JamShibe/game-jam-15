@@ -9,6 +9,10 @@ var ingredients : Array
 var amount : int = 0
 
 func _ready():
+	setup()
+		
+func setup():
+	amount = 0
 	var player = get_parent().get_parent().find_child("player_shop")
 	if player:
 		ingredients = player.ing_list

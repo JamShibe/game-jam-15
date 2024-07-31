@@ -4,22 +4,24 @@ var number_of_rooms : int = 4
 var link : String
 var current_level
 var changing_level : bool = false
-var ingredients : Array = ["Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang","Cave Moss", "Dock Leaf", "Cindered Coal", "Hollowed Bone", "Magic-Imbued Ice", "Giant Spider Fang"]
+var ingredients : Array 
 var shop_ingredients : Array
 var health : int
-var potion_inventory : Array = [5,9,11,13]
+var potion_inventory : Array = [5,9,11,13,7,10]
 var potions_in_use : Array = []
 var max_health : float = 100
 var coins : int = 100
 var drink_cooldown : int = 20
-var throw_cooldown : int= 15
+var throw_cooldown : int = 15
 
 @onready var trans : ColorRect = $SceneTransition
 @onready var dungeon_music : AudioStreamPlayer = $dungeon_music
 @onready var shop_music : AudioStreamPlayer = $shop_music
+@onready var menu_music : AudioStreamPlayer = $menu_music
 @onready var anim : AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	menu_music.play()
 	load_menu()
 
 func next_room():
@@ -94,7 +96,11 @@ func shop():
 		add_child(next_room)
 		current_level = next_room
 		shop_music.play()
-		anim.play("fade_dungeon")
+		if menu_music.playing:
+			anim.play("fade_menu")
+			menu_music.stop()
+		else:
+			anim.play("fade_dungeon")
 		trans.play_back()
 		changing_level = false
 	
@@ -151,6 +157,7 @@ func load_menu():
 		current_level = next_room
 		trans.play_back()
 		changing_level = false
+		
 	
 #INFO
 #Make shop go to potion choosing - DONE
